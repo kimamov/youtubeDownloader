@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import './App.css'
 
 export default class App extends Component {
   constructor(props) {
     super(props)
-  
+    this.dlOptions=["download","audio"]
+    this.dlMode=0;
     this.state = {
-        videoLink: ''
+        videoLink: '',
+        videoInfo: []
     }
   }
   onChange=(event)=>{
@@ -16,9 +19,18 @@ export default class App extends Component {
   }
   getVideo=(event)=>{
     event.preventDefault()
-    let dlWindow=window.open(`http://localhost:5000/audio?videolink=${this.state.videoLink}`)
+    let dlWindow=window.open(`http://localhost:5000/${this.dlOptions[this.dlMode]}?videolink=${this.state.videoLink}`)
     setTimeout(()=>{window.close(dlWindow)},8000)
     
+  }
+  getVideoInfo=(event)=>{
+    event.preventDefault()
+    axios.get(`http://localhost:5000/info?videolink=${this.state.videoLink}`).then(res=>{
+      console.log(res)
+      this.setState({videoInfo: res.data})
+    }).catch(error=>{
+      console.log(error)
+    })
   }
   
   render() {
@@ -27,11 +39,16 @@ export default class App extends Component {
         <header className="App-header">
           {this.state.videoLink}
         </header>
-        <form onSubmit={this.getVideo}>
+        <form id='videoSearchForm' onSubmit={this.getVideoInfo}>
           <input name='videoLink' type='text' onChange={this.onChange}></input>
           <input type="submit"></input>
-      </form>
-    </div>
+        </form>
+        <div>
+          {this.state.videoInfo.map(item=>
+            <p>{'type: '+JSON.stringify(item.type) +'quality: '+ JSON.stringify(item.quality)}</p>
+          )}
+        </div>
+      </div>
     )
   }
 }
