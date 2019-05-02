@@ -9,7 +9,9 @@ export default class App extends Component {
     this.dlMode=0;
     this.state = {
         videoLink: '',
-        videoInfo: []
+        videoInfo: [],
+        typeSelect: 0,
+        dlSelected: false
     }
   }
   onChange=(event)=>{
@@ -25,29 +27,62 @@ export default class App extends Component {
   }
   getVideoInfo=(event)=>{
     event.preventDefault()
-    axios.get(`http://localhost:5000/info?videolink=${this.state.videoLink}`).then(res=>{
+    axios.get(`http://localhost:5000/simpleinfo?videolink=${this.state.videoLink}`).then(res=>{
       console.log(res)
-      this.setState({videoInfo: res.data})
+      if(res.data.formats){
+        this.setState({videoInfo: res.data,dlSelected: true})
+      }
+      
     }).catch(error=>{
       console.log(error)
     })
   }
-  
+
+  dlVideo=(url)=>{
+    axios({
+      url: url,
+      method: 'GET',
+      responseType: 'blob', // important
+    }).then((response) => {
+       console.log('succes')
+       const url = window.URL.createObjectURL(new Blob([response.data]));
+       const link = document.createElement('a');
+       link.href = url;
+       link.setAttribute('download', 'file.mp4'); 
+       document.body.appendChild(link);
+       link.click();
+       document.body.removeChild(link);
+    });
+  }
+  componentDidMount(){
+    /* this.dlVideo(
+      'https://r3---sn-8xgn5uxa-cxge.googlevideo.com/videoplayback?id=o-AKNbby6tD8YKTUiQYAc_6vcEc3qcOSWIOsegXr0iLgJV&aitags=133,134,135,136,160,242,243,244,247,278,298,302,394,395,396,397&itag=394&source=youtube&requiressl=yes&mm=31,29&mn=sn-8xgn5uxa-cxge,sn-4g5e6nld&ms=au,rdu&mv=m&pcm2cms=yes&pl=24&ei=7UrLXPaHPNHVgQery4PYBA&initcwndbps=1396250&mime=video/mp4&gir=yes&clen=5470553&dur=638.533&lmt=1556822908874006&mt=1556826777&fvip=3&keepalive=yes&c=WEB&txp=5531432&ip=88.130.48.98&ipbits=0&expire=1556848462&sparams=ip,ipbits,expire,id,aitags,source,requiressl,mm,mn,ms,mv,pcm2cms,pl,ei,initcwndbps,mime,gir,clen,dur,lmt&signature=C647A6E17406246772D2966AA253766F2B07BB69.9586DA6C4FC28D0AF095AE556A1E042A00063CE5&key=yt8&ratebypass=yes%27'
+      ) */
+  }
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          {this.state.videoLink}
+          <p>{this.state.videoInfo?this.state.videoInfo.title:''}</p>
+          <img src={this.state.videoInfo.thumbnail}></img>
         </header>
         <form id='videoSearchForm' onSubmit={this.getVideoInfo}>
-          <input name='videoLink' type='text' onChange={this.onChange}></input>
+          <input placeholder='youtube video url' name='videoLink' type='text' onChange={this.onChange}></input>
+          <select name='typeSelect' onChange={this.onChange} value={this.state.typeSelect}>
+          {(typeof this.state.videoInfo.formats =="object")&&this.state.videoInfo.formats.map((item,index)=>
+            <option onChange value={index}>{'type: '+item.type +' quality: '+ item.quality+ ' '+(item.videoOnly?'only video':'')}</option>
+          )}
+          </select>
           <input type="submit"></input>
         </form>
-        <div>
-          {this.state.videoInfo.map(item=>
-            <p>{'type: '+JSON.stringify(item.type) +'quality: '+ JSON.stringify(item.quality)}</p>
-          )}
-        </div>
+        {this.state.dlSelected&&
+          <button
+          onClick={(url)=>this.dlVideo(this.state.videoInfo.formats[this.state.typeSelect].url)} 
+          className='roundedButton'>
+            DOWNLOAD
+          </button>
+        }
+        
       </div>
     )
   }
