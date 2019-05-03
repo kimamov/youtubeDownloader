@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import '../App.css'
+import SearchBar from './SearchBar.js'
+import FormatSelect from './FormatSelect.js'
+
 
 export default class App extends Component {
   constructor(props) {
@@ -86,20 +88,16 @@ export default class App extends Component {
           <p>{this.state.videoInfo?this.state.videoInfo.title:''}</p>
           <img alt='' src={this.state.videoInfo.thumbnail}></img>
         </header>
-        <form id='videoSearchForm' onSubmit={this.getVideoInfo}>
-          <input placeholder='youtube video url' name='videoLink' type='text' onChange={this.onChange}></input>
-          <input className='roundedButton' type="submit"></input>
-          
-          <div>SELECT A FORMAT</div>
+        <SearchBar onChange={this.onChange} getVideoInfo={this.getVideoInfo}></SearchBar>
+        <div>SELECT A FORMAT</div>
           <select name='typeSelect' onChange={this.onChange} value={this.state.typeSelect}>
           {(typeof this.state.videoInfo.formats =="object")&&this.state.videoInfo.formats.map((item,index)=>
             <option value={index}>{'type: '+item.type +' quality: '+ item.quality+ ' '+(item.videoOnly?'only video':'')}</option>
           )}
           </select>
-        </form>
         {this.state.dlSelected&&
           <button
-          onClick={(url)=>this.dlVideo("http://localhost:5000/dl?videolink=https://www.youtube.com/watch?v=poyvTvN1E38"/* this.state.videoInfo.formats[this.state.typeSelect].url */)} 
+          onClick={(url)=>this.dlVideo("http://localhost:5000/dl?videolink=https://www.youtube.com/watch?v=GSLPOmQV9_w"/* this.state.videoInfo.formats[this.state.typeSelect].url */)} 
           className='roundedButton'
           id='clientDownloadButton'>
             DOWNLOAD
