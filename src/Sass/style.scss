@@ -1,0 +1,109 @@
+$mainColor: white;
+$transparant: rgba(0,0,0,0);
+
+$mainRoundness: 0.2rem;
+.App {
+    text-align: center;
+    overflow: none;
+  }
+  #dlComponent{
+    text-align: center;
+    background-color: lightgrey;
+    max-width: 30rem;
+    margin: 0 auto;
+    padding: 1rem 0 1rem 0;
+    border-radius: 0.6rem;
+  
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  #videoSearchForm{
+    padding: 0 0 1rem 0;
+    display: block;
+    width: 100%;
+    max-width: 24rem;
+    margin: 0 auto;
+    width: 100%;
+
+    div{
+        display: grid;
+        grid-template-columns: 70% 30%;
+        border-radius: 0.2rem;
+        border: 0.1rem solid white;
+        background-color: $mainColor;
+        overflow: hidden;
+    }
+    input{
+        border: none;
+        text-align: center;
+        width: 100%;
+        margin: 0 auto;
+        background-color: $transparant;
+      }
+    input[type='submit']{
+        background-color: lightcoral;
+    }
+  }
+
+  .roundedButton{
+    border-radius: 0.2rem;
+    border: none;
+    margin: 0 auto 0 auto !important;
+    height: 2rem;
+    width: 100%;
+    max-width: 10rem;
+    background-color: white;
+    font-weight: bold;
+  }
+  select{
+    width: 100%;
+    max-width: 10rem;
+    background-color: white;
+    font-weight: bold;
+    margin: 0 auto;
+  }
+  .roundedButton:hover{
+    color: white;
+    background-color: black !important;
+  }
+  
+  
+  .topNav{
+    z-index: 1;
+    /* position: fixed; */
+    top: 0;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 0;
+    /* border-bottom: 0.1rem solid rgba(200,200,200,0.6); */
+  }
+  .navList{
+    margin: 0 auto;
+    display: flex;
+    /* max-width: 40rem; */
+    max-width: 50rem;
+    /* justify-content: space-between; */
+    padding: 0 !important;
+  }
+  
+  .navList>.somePadding{
+    list-style: none;
+    padding: 0.2rem 1rem 0.4rem 1rem;
+    cursor: pointer;
+  }
+  .navList>li:first-child{
+    
+  }
+  .navList>.somePadding:hover{
+    background-color: rgba(200,200,200,0.4)
+  }
+  
+  
+  .undecoratedLink{
+    text-decoration:none;
+    color: black;
+    
+  }
