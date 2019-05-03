@@ -1,5 +1,15 @@
 .App {
   text-align: center;
+
+}
+#dlComponent{
+  text-align: center;
+  background-color: lightgrey;
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: 1rem 0 1rem 0;
+  border-radius: 0.6rem;
+
 }
 
 .App-link {
@@ -7,22 +17,26 @@
 }
 
 #videoSearchForm{
-  padding: 2rem;
-  background-color: lightgrey;
+  padding: 2rem 0 1rem 0;
   display: block;
   width: 100%;
   max-width: 24rem;
-  border-radius: 0.6rem;
   margin: 0 auto;
   display: grid;
+  width: 100%;
 }
 #videoSearchForm>input{
   border-radius: 0.2rem;
   border: none;
   text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  word-wrap: break-word;
 }
-#videoSearchForm>input[type='submit']{
-  margin: 1rem auto 0 auto;
+.roundedButton{
+  border-radius: 0.2rem;
+  border: none;
+  margin: 1rem auto 0 auto !important;
   height: 2rem;
   width: 100%;
   max-width: 10rem;
@@ -30,12 +44,13 @@
   font-weight: bold;
 }
 #videoSearchForm>select{
+  width: 100%;
   max-width: 10rem;
   background-color: white;
   font-weight: bold;
   margin: 0 auto;
 }
-#videoSearchForm>input[type='submit']:hover{
+.roundedButton:hover{
   color: white;
   background-color: black;
 }
