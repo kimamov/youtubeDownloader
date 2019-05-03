@@ -70,6 +70,7 @@ export default class App extends Component {
        document.body.appendChild(link);
        link.click();
        document.body.removeChild(link);
+       URL.revokeObjectURL(url)
     });
   }
   componentDidMount(){
@@ -98,7 +99,7 @@ export default class App extends Component {
         </form>
         {this.state.dlSelected&&
           <button
-          onClick={(url)=>this.dlVideo(this.state.videoInfo.formats[this.state.typeSelect].url)} 
+          onClick={(url)=>this.dlVideo("http://localhost:5000/dl?videolink=https://www.youtube.com/watch?v=poyvTvN1E38"/* this.state.videoInfo.formats[this.state.typeSelect].url */)} 
           className='roundedButton'
           id='clientDownloadButton'>
             DOWNLOAD
