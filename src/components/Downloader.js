@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import './App.css'
+import '../App.css'
 
 export default class App extends Component {
   constructor(props) {
     super(props)
-    this.dlOptions=["download","audio"]
-    this.dlMode=0;
+    this.dlOptions=["dl","audio"]
+    this.dlMode=1;
+    this.modes=['CLIENT SIDE DOWNLOAD','SERVER SIDE DOWNLOAD','LOW DATA MODE']
     this.state = {
         videoLink: '',
         videoInfo: [],
         typeSelect: 0,
-        dlSelected: false
+        dlSelected: false,
+        mode: 0
     }
   }
   onChange=(event)=>{
@@ -38,6 +40,22 @@ export default class App extends Component {
     })
   }
 
+  dlVideoClient=(url)=>{
+    axios({
+      url: url,
+      method: 'GET',
+      responseType: 'blob', // important
+    }).then((response) => {
+       console.log('succes')
+       const url = window.URL.createObjectURL(new Blob([response.data]));
+       const link = document.createElement('a');
+       link.href = url;
+       link.setAttribute('download', 'file.mp4'); 
+       document.body.appendChild(link);
+       link.click();
+       document.body.removeChild(link);
+    });
+  }
   dlVideo=(url)=>{
     axios({
       url: url,
@@ -61,30 +79,33 @@ export default class App extends Component {
   }
   render() {
     return (
-      <div className="App">
         <div id='dlComponent'>
+        <h>{this.modes[this.state.mode]}</h>
         <header className="App-header">
           <p>{this.state.videoInfo?this.state.videoInfo.title:''}</p>
           <img alt='' src={this.state.videoInfo.thumbnail}></img>
         </header>
         <form id='videoSearchForm' onSubmit={this.getVideoInfo}>
           <input placeholder='youtube video url' name='videoLink' type='text' onChange={this.onChange}></input>
+          <input className='roundedButton' type="submit"></input>
+          
+          <div>SELECT A FORMAT</div>
           <select name='typeSelect' onChange={this.onChange} value={this.state.typeSelect}>
           {(typeof this.state.videoInfo.formats =="object")&&this.state.videoInfo.formats.map((item,index)=>
             <option value={index}>{'type: '+item.type +' quality: '+ item.quality+ ' '+(item.videoOnly?'only video':'')}</option>
           )}
           </select>
-          <input className='roundedButton' type="submit"></input>
         </form>
         {this.state.dlSelected&&
           <button
           onClick={(url)=>this.dlVideo(this.state.videoInfo.formats[this.state.typeSelect].url)} 
-          className='roundedButton'>
+          className='roundedButton'
+          id='clientDownloadButton'>
             DOWNLOAD
           </button>
         }
         </div>
-      </div>
+      
     )
   }
 }
