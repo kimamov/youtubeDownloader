@@ -58,13 +58,7 @@ $mainRoundness: 0.2rem;
     background-color: white;
     font-weight: bold;
   }
-  select{
-    width: 100%;
-    max-width: 10rem;
-    background-color: white;
-    font-weight: bold;
-    margin: 0 auto;
-  }
+
   .roundedButton:hover{
     color: white;
     background-color: black !important;
@@ -106,4 +100,47 @@ $mainRoundness: 0.2rem;
     text-decoration:none;
     color: black;
     
+  }
+
+  .typeSelect{
+      max-width: 24rem;
+      margin: 0 auto;
+      .radioButtons{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 0.5rem;
+        font-size: 0.8rem;
+        input[type='radio']{
+            display: none;
+        }
+        label{
+            border-radius: $mainRoundness;
+            display: block;
+            background-color: $mainColor;
+            padding: 0.4rem 0 0.4rem 0;
+            border: 1px solid $transparant;
+        }
+        input[type="radio"]:checked+label{ 
+            border: 1px solid black;
+        } 
+      }
+      select{
+        width: 100%;
+        max-width: 8rem;
+        background-color: white;
+        font-weight: bold;
+        margin: 0 auto;
+      }
+      .advancedType{
+        background-color: white;
+        max-width: 20rem;
+        border-radius: $mainRoundness;
+        margin: 1rem auto 1rem auto;
+        display: flex;
+        justify-content: space-around;
+        select{
+            border:none;
+            margin: 0;
+        }
+      }
   }

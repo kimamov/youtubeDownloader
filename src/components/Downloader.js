@@ -8,18 +8,19 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.dlOptions=["dl","audio"]
-    this.dlMode=1;
+    this.dlMode=0;
+    this.mainQuery=['','','']
     this.modes=['CLIENT SIDE DOWNLOAD','SERVER SIDE DOWNLOAD','LOW DATA MODE']
     this.state = {
         videoLink: '',
         videoInfo: [],
         typeSelect: 0,
-        dlSelected: false,
+        quickType: "1",
+        dlSelected: true,
         mode: 0
     }
   }
   onChange=(event)=>{
-    event.preventDefault()
     const name=event.target.name
     this.setState({[name]:event.target.value})
   }
@@ -58,7 +59,8 @@ export default class App extends Component {
        document.body.removeChild(link);
     });
   }
-  dlVideo=(url)=>{
+  dlVideo=(event,url)=>{
+    event.preventDefault()
     axios({
       url: url,
       method: 'GET',
@@ -83,25 +85,21 @@ export default class App extends Component {
   render() {
     return (
         <div id='dlComponent'>
-        <h>{this.modes[this.state.mode]}</h>
+        <h1>{this.modes[this.state.mode]}</h1>
         <header className="App-header">
           <p>{this.state.videoInfo?this.state.videoInfo.title:''}</p>
           <img alt='' src={this.state.videoInfo.thumbnail}></img>
         </header>
         <SearchBar onChange={this.onChange} getVideoInfo={this.getVideoInfo}></SearchBar>
-        <div>SELECT A FORMAT</div>
-          <select name='typeSelect' onChange={this.onChange} value={this.state.typeSelect}>
-          {(typeof this.state.videoInfo.formats =="object")&&this.state.videoInfo.formats.map((item,index)=>
-            <option value={index}>{'type: '+item.type +' quality: '+ item.quality+ ' '+(item.videoOnly?'only video':'')}</option>
-          )}
-          </select>
         {this.state.dlSelected&&
-          <button
-          onClick={(url)=>this.dlVideo("http://localhost:5000/dl?videolink=https://www.youtube.com/watch?v=GSLPOmQV9_w"/* this.state.videoInfo.formats[this.state.typeSelect].url */)} 
-          className='roundedButton'
-          id='clientDownloadButton'>
-            DOWNLOAD
-          </button>
+        <FormatSelect 
+          onChange={this.onChange}
+          //onSubmit={(event,url)=>this.dlVideo(event,"http://localhost:5000/dl?videolink=https://www.youtube.com/watch?v=GSLPOmQV9_w"/* this.state.videoInfo.formats[this.state.typeSelect].url */)}
+          onSubmit={this.getVideo}  
+          typeSelect={this.state.typeSelect} 
+          videoInfo={this.state.videoInfo}
+          quickType={this.state.quickType}>
+        </FormatSelect>
         }
         </div>
       

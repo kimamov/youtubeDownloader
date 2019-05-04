@@ -59,14 +59,6 @@
   font-weight: bold;
 }
 
-select {
-  width: 100%;
-  max-width: 10rem;
-  background-color: white;
-  font-weight: bold;
-  margin: 0 auto;
-}
-
 .roundedButton:hover {
   color: white;
   background-color: black !important;
@@ -106,5 +98,60 @@ select {
 .undecoratedLink {
   text-decoration: none;
   color: black;
+}
+
+.typeSelect {
+  max-width: 24rem;
+  margin: 0 auto;
+}
+
+.typeSelect .radioButtons {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.typeSelect .radioButtons input[type='radio'] {
+  display: none;
+}
+
+.typeSelect .radioButtons label {
+  border-radius: 0.2rem;
+  display: block;
+  background-color: white;
+  padding: 0.4rem 0 0.4rem 0;
+  border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.typeSelect .radioButtons input[type="radio"]:checked + label {
+  border: 1px solid black;
+}
+
+.typeSelect select {
+  width: 100%;
+  max-width: 8rem;
+  background-color: white;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.typeSelect .advancedType {
+  background-color: white;
+  max-width: 20rem;
+  border-radius: 0.2rem;
+  margin: 1rem auto 1rem auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.typeSelect .advancedType select {
+  border: none;
+  margin: 0;
 }
 /*# sourceMappingURL=style.css.map */
