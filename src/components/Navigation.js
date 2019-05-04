@@ -6,12 +6,13 @@ export default class componentName extends Component {
       super(props)
     
       this.state = {
-         
+         mobileNav: false
       }
     }
     
   render() {
     return (
+      <div className='navComp'>
       <nav className={'topNav'}>
         <ul className={'navList'}>
             <Link className={'somePadding undecoratedLink'} to='/'>ME </Link>
@@ -19,6 +20,22 @@ export default class componentName extends Component {
             <Link className={'somePadding undecoratedLink'} to='/'>INFO</Link>
         </ul>
       </nav>
+      <div 
+        onClick={()=>this.setState({mobileNav: !this.state.mobileNav})} 
+        className={`mobileNavToggle`}>
+      </div>
+      <nav className={'mobileNav'}>
+        <div id='mobileNavOuter'>
+        <div id='mobileNavInner' className={`mobileNavToggle ${this.state.mobileNav?'mobileNavToggleOpen':''}`}>
+          <ul>
+            <Link className={'somePadding undecoratedLink'} to='/'>OPTIONS</Link>
+            <Link className={'somePadding undecoratedLink'} to='/'>HOW TO USE</Link>
+            <Link className={'somePadding undecoratedLink'} to='/'>SCHEKEL</Link>
+          </ul>
+        </div>
+        </div>
+      </nav>
+      </div>
     )
   }
 }
