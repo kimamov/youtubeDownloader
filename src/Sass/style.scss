@@ -1,19 +1,40 @@
 $mainColor: white;
 $transparant: rgba(0,0,0,0);
+$bgColor: lightblue;
+
+$mobileSpacing: 100%;
 
 $mainRoundness: 0.2rem;
 .App {
     text-align: center;
-    overflow: none;
+    main{
+        margin: 0 auto;
+        width: 100%;
+        max-width: 50rem;
+    }
   }
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    .App {
+      main{
+        height: calc(100vh - 2rem);
+        background-image: linear-gradient(lightblue,violet);
+      }
+      #dlComponent{
+        padding: 1rem 1rem 2rem 1rem;
+        border-radius: 0;
+        background-color: transparent;
+      }
+    }
+    }
   #dlComponent{
     text-align: center;
-    background-color: lightgrey;
+    background-color: $bgColor;
     max-width: 30rem;
     margin: 0 auto;
-    padding: 1rem 0 1rem 0;
+    padding: 1rem 0 2rem 0;
     border-radius: 0.6rem;
-  
+   
   }
   
   .App-link {
@@ -23,12 +44,12 @@ $mainRoundness: 0.2rem;
   #videoSearchForm{
     padding: 0 0 1rem 0;
     display: block;
-    width: 100%;
+    width: $mobileSpacing;
     max-width: 24rem;
     margin: 0 auto;
-    width: 100%;
 
     div{
+        margin: 0 auto;
         display: grid;
         grid-template-columns: 70% 30%;
         border-radius: 0.2rem;
@@ -104,6 +125,7 @@ $mainRoundness: 0.2rem;
 
   .typeSelect{
       max-width: 24rem;
+      width: $mobileSpacing;
       margin: 0 auto;
       .radioButtons{
         display: grid;
@@ -133,7 +155,7 @@ $mainRoundness: 0.2rem;
       }
       .advancedType{
         background-color: white;
-        max-width: 20rem;
+        max-width: 24rem;
         border-radius: $mainRoundness;
         margin: 1rem auto 1rem auto;
         display: flex;

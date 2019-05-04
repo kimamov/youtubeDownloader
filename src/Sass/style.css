@@ -1,14 +1,32 @@
 .App {
   text-align: center;
-  overflow: none;
+}
+
+.App main {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 50rem;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .App main {
+    height: calc(100vh - 2rem);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(lightblue), to(violet));
+    background-image: linear-gradient(lightblue, violet);
+  }
+  .App #dlComponent {
+    padding: 1rem 1rem 2rem 1rem;
+    border-radius: 0;
+    background-color: transparent;
+  }
 }
 
 #dlComponent {
   text-align: center;
-  background-color: lightgrey;
+  background-color: lightblue;
   max-width: 30rem;
   margin: 0 auto;
-  padding: 1rem 0 1rem 0;
+  padding: 1rem 0 2rem 0;
   border-radius: 0.6rem;
 }
 
@@ -22,10 +40,10 @@
   width: 100%;
   max-width: 24rem;
   margin: 0 auto;
-  width: 100%;
 }
 
 #videoSearchForm div {
+  margin: 0 auto;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 70% 30%;
@@ -102,6 +120,7 @@
 
 .typeSelect {
   max-width: 24rem;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -140,7 +159,7 @@
 
 .typeSelect .advancedType {
   background-color: white;
-  max-width: 20rem;
+  max-width: 24rem;
   border-radius: 0.2rem;
   margin: 1rem auto 1rem auto;
   display: -webkit-box;

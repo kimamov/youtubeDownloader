@@ -12,11 +12,13 @@ class App extends Component {
       <div className="App">
         <div></div>
         <Navigation></Navigation>
-          <Switch>
-            <Route exact path='/' component={Downloader}/>
+          <main>
+            <Switch>
+              <Route exact path='/' component={Downloader}/>
             
-            <Route component={RouteUndef}/>
-          </Switch>
+              <Route component={RouteUndef}/>
+            </Switch>
+          </main>
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import SearchBar from './SearchBar.js'
 import FormatSelect from './FormatSelect.js'
-
+const BASEURL='http://82.165.121.77:5000/'
 
 export default class App extends Component {
   constructor(props) {
@@ -26,13 +26,13 @@ export default class App extends Component {
   }
   getVideo=(event)=>{
     event.preventDefault()
-    let dlWindow=window.open(`http://localhost:5000/${this.dlOptions[this.dlMode]}?videolink=${this.state.videoLink}`)
+    let dlWindow=window.open(`${BASEURL}${this.dlOptions[this.dlMode]}?videolink=${this.state.videoLink}`)
     setTimeout(()=>{window.close(dlWindow)},8000)
     
   }
   getVideoInfo=(event)=>{
     event.preventDefault()
-    axios.get(`http://localhost:5000/simpleinfo?videolink=${this.state.videoLink}`).then(res=>{
+    axios.get(`${BASEURL}simpleinfo?videolink=${this.state.videoLink}`).then(res=>{
       console.log(res)
       if(res.data.formats){
         this.setState({videoInfo: res.data,dlSelected: true})
