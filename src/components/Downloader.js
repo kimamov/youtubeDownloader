@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {Link, Route} from 'react-router-dom'
+import {Link, Route, Switch} from 'react-router-dom'
 import SearchBar from './SearchBar.js'
 import DownloadList from './DownloadList'
 import About from './About'
@@ -126,11 +126,22 @@ export default class App extends Component {
         </FormatSelect>
         }
         </div>
-        {this.state.dlSelected&&<Link 
-          to='/downloadlist'
-          className={'downloadListToggle undecoratedLink'}        >
-          <p>OPEN</p>
-        </Link>}
+        {this.state.dlSelected&&
+        <Switch>
+          <Route exact path='/' render={()=><Link 
+            to='/downloadlist'
+            className={'downloadListToggle undecoratedLink'}>
+            <p>OPEN</p>
+            </Link>}
+          />
+          <Route path='/downloadlist' render={()=><Link 
+            to='..'
+            className={'downloadListToggle undecoratedLink'}>
+            <p>CLOSE</p>
+            </Link>}
+          />
+        </Switch>
+        }
         {this.state.dlSelected&&
           <Route path='/downloadlist' 
           render={()=><DownloadList videoSelect={this.state.videoInfo}/>} 

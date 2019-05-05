@@ -35,6 +35,24 @@ $mainRoundness: 0.2rem;
         padding: 0rem 1rem 2rem 1rem;
         border-radius: 0;
         background-color: transparent;
+
+        #videoSearchForm{
+          div{
+              border: none;
+              background-color: $transparant;
+              display: block;
+          }
+          input[type='text']{
+              border-radius: $mainRoundness;
+              margin: 0.4rem auto;
+              padding: 0.4rem 0;
+              background-color: white;
+              border: 1px solid grey;
+              box-sizing: border-box;
+            }
+         
+        }
+        
       }
       .radioButtons{
         font-size: 0.6rem !important;  
@@ -50,37 +68,23 @@ $mainRoundness: 0.2rem;
       position: absolute;
       top: 0;
       height: 100%;
-      overflow: hidden;
-      background-image: linear-gradient(lightblue,violet);;
-      z-index: 2;
-      .downloadListHeader{
-        border-radius: $mainRoundness;
-        border: 1px solid black;
-        margin: 0 1rem;
-        height: 8rem;
-      }
+      background-image: linear-gradient(lightblue,violet);
+      z-index: 1;
+      
     }
     .listContainer{
       height: calc(100% - 10rem) !important;
       padding: 1rem 0;
       width: 94% !important;
       margin: 0 auto;
-      div{
-        display: grid;
-        padding: 0.5rem 0;
-        grid-template-columns: 1fr 1fr 1fr;
-        p,a{
-          align-self: center;
-          margin: 0;
-        }
-        
-      }
+      
     }
     .downloadListToggle{
+      background-color: rgba(180,200,200,0.4) !important;
       position: absolute;
-      z-index: 1;
-      top: 90%;
-      left: 10%;
+      z-index: 2;
+      bottom: 1%;
+      left: 1%;
     }
     }
   #dlComponent{
@@ -288,6 +292,9 @@ $mainRoundness: 0.2rem;
       max-width: 34rem;
       width: $mobileSpacing;
       margin: 0 auto;
+      div{
+        margin: 0.4rem 0;
+      }
       .radioButtons{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -343,7 +350,6 @@ $mainRoundness: 0.2rem;
     }
   }
   .listContainer{
-    height: 36rem;
     overflow: auto;
     width: 100%;
     div{

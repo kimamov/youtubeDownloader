@@ -30,6 +30,20 @@
     border-radius: 0;
     background-color: transparent;
   }
+  .App #dlComponent #videoSearchForm div {
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    display: block;
+  }
+  .App #dlComponent #videoSearchForm input[type='text'] {
+    border-radius: 0.2rem;
+    margin: 0.4rem auto;
+    padding: 0.4rem 0;
+    background-color: white;
+    border: 1px solid grey;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
   .App .radioButtons {
     font-size: 0.6rem !important;
   }
@@ -43,16 +57,9 @@
     position: absolute;
     top: 0;
     height: 100%;
-    overflow: hidden;
     background-image: -webkit-gradient(linear, left top, left bottom, from(lightblue), to(violet));
     background-image: linear-gradient(lightblue, violet);
-    z-index: 2;
-  }
-  .downloadList .downloadListHeader {
-    border-radius: 0.2rem;
-    border: 1px solid black;
-    margin: 0 1rem;
-    height: 8rem;
+    z-index: 1;
   }
   .listContainer {
     height: calc(100% - 10rem) !important;
@@ -60,24 +67,12 @@
     width: 94% !important;
     margin: 0 auto;
   }
-  .listContainer div {
-    display: -ms-grid;
-    display: grid;
-    padding: 0.5rem 0;
-    -ms-grid-columns: 1fr 1fr 1fr;
-        grid-template-columns: 1fr 1fr 1fr;
-  }
-  .listContainer div p, .listContainer div a {
-    -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
-        align-self: center;
-    margin: 0;
-  }
   .downloadListToggle {
+    background-color: rgba(180, 200, 200, 0.4) !important;
     position: absolute;
-    z-index: 1;
-    top: 90%;
-    left: 10%;
+    z-index: 2;
+    bottom: 1%;
+    left: 1%;
   }
 }
 
@@ -312,6 +307,10 @@
   margin: 0 auto;
 }
 
+.typeSelect div {
+  margin: 0.4rem 0;
+}
+
 .typeSelect .radioButtons {
   display: -ms-grid;
   display: grid;
@@ -380,7 +379,6 @@
 }
 
 .listContainer {
-  height: 36rem;
   overflow: auto;
   width: 100%;
 }

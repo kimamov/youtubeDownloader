@@ -5,11 +5,6 @@ import {Link} from 'react-router-dom'
 const DownloadList = (props) => {
   return (
     <div className={'downloadList'}>
-        <Link 
-          to='..'
-          className={'downloadListToggle undecoratedLink'}        >
-          <p>OPEN</p>
-        </Link>
         <div className={'downloadListHeader'}>
             <h1>LIST OF FORMATS</h1>
             <p>SAVE AS FROM HERE</p>
