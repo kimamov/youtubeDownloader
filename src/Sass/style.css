@@ -1,20 +1,95 @@
 .App {
   text-align: center;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(lightblue), to(violet));
+  background-image: linear-gradient(lightblue, violet);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .App main {
   margin: 0 auto;
   width: 100%;
   /* max-width: $maxWidth; */
-  background-color: lightblue;
+  /* background-color: $bgColor; */
+}
+
+.App main .mainSection {
+  /* background-color: white; */
+}
+
+#dlComponent {
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 2rem 1rem;
+  border-radius: 1rem;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+#videoSearchForm {
+  padding: 0 0 2rem 0;
+  display: block;
+  width: 100%;
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
+#videoSearchForm div {
+  margin: 0 auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 70% 30%;
+      grid-template-columns: 70% 30%;
+  border-radius: 3rem;
+  border: 0.1rem solid white;
+  background-color: white;
+  overflow: hidden;
+}
+
+#videoSearchForm input {
+  border: none;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+#videoSearchForm input[type='submit'] {
+  background-color: lightcoral;
+}
+
+.roundedButton {
+  border-radius: 2rem;
+  border: 1px solid grey;
+  margin: 0 auto 0 auto !important;
+  height: 2.6rem;
+  width: 100%;
+  max-width: 12rem;
+  background-color: white;
+  font-weight: bold;
+}
+
+.roundedButton:hover {
+  color: white;
+  background-color: black !important;
 }
 
 @media (min-width: 20px) and (max-width: 480px) {
+  .App #welcomeBanner {
+    display: none !important;
+  }
   .App main {
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
     background-image: -webkit-gradient(linear, left top, left bottom, from(lightblue), to(violet));
     background-image: linear-gradient(lightblue, violet);
+  }
+  .App main .mainSection {
+    height: 100%;
+    background-color: transparent !important;
   }
   .App .downloadContainer {
     height: 100%;
@@ -34,6 +109,7 @@
     border: none;
     background-color: rgba(0, 0, 0, 0);
     display: block;
+    border-radius: 0;
   }
   .App #dlComponent #videoSearchForm input[type='text'] {
     border-radius: 0.2rem;
@@ -74,67 +150,6 @@
     bottom: 1%;
     left: 1%;
   }
-}
-
-#dlComponent {
-  text-align: center;
-  /* background-color: $bgColor; */
-  max-width: 40rem;
-  margin: 0 auto;
-  padding: 1rem 1rem 2rem 1rem;
-  border-radius: 0.6rem;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-#videoSearchForm {
-  padding: 0 0 2rem 0;
-  display: block;
-  width: 100%;
-  max-width: 34rem;
-  margin: 0 auto;
-}
-
-#videoSearchForm div {
-  margin: 0 auto;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 70% 30%;
-      grid-template-columns: 70% 30%;
-  border-radius: 0.2rem;
-  border: 0.1rem solid white;
-  background-color: white;
-  overflow: hidden;
-}
-
-#videoSearchForm input {
-  border: none;
-  text-align: center;
-  width: 100%;
-  margin: 0 auto;
-  background-color: rgba(0, 0, 0, 0);
-}
-
-#videoSearchForm input[type='submit'] {
-  background-color: lightcoral;
-}
-
-.roundedButton {
-  border-radius: 0.2rem;
-  border: none;
-  margin: 0 auto 0 auto !important;
-  height: 2rem;
-  width: 100%;
-  max-width: 10rem;
-  background-color: white;
-  font-weight: bold;
-}
-
-.roundedButton:hover {
-  color: white;
-  background-color: black !important;
 }
 
 /*   .mobileNav{
@@ -334,6 +349,7 @@
 
 .typeSelect .radioButtons input[type="radio"]:checked + label {
   border: 1px solid black;
+  background-color: lightgrey;
 }
 
 .typeSelect select {
@@ -363,7 +379,7 @@
 
 .downloadContainer {
   /* background-color: $bgColor; */
-  height: calc(100vh - 3rem);
+  height: calc(100% - 3rem);
   overflow: auto;
 }
 
@@ -418,5 +434,44 @@
 
 .downloadListToggle p {
   margin: 0 auto;
+}
+
+.fullSizeBg {
+  background-image: url("../media/world.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#welcomeBanner {
+  /* background-color: lightgrey; */
+  padding: 4rem 0 2rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#welcomeBanner div {
+  margin: 0 auto;
+}
+
+#welcomeBanner div h1 {
+  color: white;
+  font-size: 4rem;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+#welcomeBanner div p {
+  color: white;
+  margin: 0;
+}
+
+#welcomeBanner div button {
+  margin-top: 2rem !important;
 }
 /*# sourceMappingURL=style.css.map */

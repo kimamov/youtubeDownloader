@@ -1,29 +1,102 @@
 $mainColor: white;
 $transparant: rgba(0,0,0,0);
 $bgColor: lightblue;
+$mainDark: lightgrey;
 $secondaryLight: rgb(216, 136, 226);
 $maxWidth: 82rem;
 $mobileSpacing: 100%;
 $navHeight: 3rem;
 
 $mainRoundness: 0.2rem;
+
+
+
 .App {
     text-align: center;
-    
+    background-image: linear-gradient(lightblue, violet);
+    background-repeat: no-repeat;
+    background-size: cover;
     main{
         margin: 0 auto;
         width: 100%;
         /* max-width: $maxWidth; */
-        background-color: $bgColor;
+        /* background-color: $bgColor; */
+        .mainSection{
+          /* background-color: white; */
+        }
     }
+  }
+
+
+  #dlComponent{
+    text-align: center;
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 1rem 1rem 2rem 1rem;
+    border-radius: 1rem;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  #videoSearchForm{
+    padding: 0 0 2rem 0;
+    display: block;
+    width: $mobileSpacing;
+    max-width: 34rem;
+    margin: 0 auto;
+
+    div{
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 70% 30%;
+        border-radius: 3rem;
+        border: 0.1rem solid white;
+        background-color: $mainColor;
+        overflow: hidden;
+    }
+    input{
+        border: none;
+        text-align: center;
+        width: 100%;
+        margin: 0 auto;
+        background-color: $transparant;
+      }
+    input[type='submit']{
+        background-color: lightcoral;
+    }
+  }
+
+  .roundedButton{
+    border-radius: 2rem;
+    border: 1px solid grey;
+    margin: 0 auto 0 auto !important;
+    height: 2.6rem;
+    width: 100%;
+    max-width: 12rem;
+    background-color: white;
+    font-weight: bold;
+  }
+
+  .roundedButton:hover{
+    color: white;
+    background-color: black !important;
   }
 
   @media (min-width: 20px) and (max-width: 480px) {
     .App {
+      #welcomeBanner{
+        display: none !important;
+      }
       main{
-        height: 100vh;
+        height: 100%;
         overflow: hidden;
         background-image: linear-gradient(lightblue,violet);
+        .mainSection{
+          height: 100%;
+          background-color: transparent !important;
+        }
       }
       .downloadContainer{
         height: 100%;
@@ -41,6 +114,7 @@ $mainRoundness: 0.2rem;
               border: none;
               background-color: $transparant;
               display: block;
+              border-radius: 0;
           }
           input[type='text']{
               border-radius: $mainRoundness;
@@ -87,62 +161,7 @@ $mainRoundness: 0.2rem;
       left: 1%;
     }
     }
-  #dlComponent{
-    text-align: center;
-    /* background-color: $bgColor; */
-    max-width: 40rem;
-    margin: 0 auto;
-    padding: 1rem 1rem 2rem 1rem;
-    border-radius: 0.6rem;
-  }
   
-  .App-link {
-    color: #61dafb;
-  }
-  
-  #videoSearchForm{
-    padding: 0 0 2rem 0;
-    display: block;
-    width: $mobileSpacing;
-    max-width: 34rem;
-    margin: 0 auto;
-
-    div{
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 70% 30%;
-        border-radius: 0.2rem;
-        border: 0.1rem solid white;
-        background-color: $mainColor;
-        overflow: hidden;
-    }
-    input{
-        border: none;
-        text-align: center;
-        width: 100%;
-        margin: 0 auto;
-        background-color: $transparant;
-      }
-    input[type='submit']{
-        background-color: lightcoral;
-    }
-  }
-
-  .roundedButton{
-    border-radius: 0.2rem;
-    border: none;
-    margin: 0 auto 0 auto !important;
-    height: 2rem;
-    width: 100%;
-    max-width: 10rem;
-    background-color: white;
-    font-weight: bold;
-  }
-
-  .roundedButton:hover{
-    color: white;
-    background-color: black !important;
-  }
   
 
   
@@ -312,6 +331,7 @@ $mainRoundness: 0.2rem;
         }
         input[type="radio"]:checked+label{ 
             border: 1px solid black;
+            background-color: $mainDark;
         } 
       }
       select{
@@ -337,7 +357,7 @@ $mainRoundness: 0.2rem;
 
   .downloadContainer{
    /* background-color: $bgColor; */
-   height: calc(100vh - 3rem);
+   height: calc(100% - 3rem);
    overflow: auto;
   }
   .downloadList{
@@ -375,4 +395,36 @@ $mainRoundness: 0.2rem;
     p{
       margin: 0 auto;
     }
+  }
+
+  .fullSizeBg{
+    background-image: url("../media/world.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  #welcomeBanner{
+    /* background-color: lightgrey; */
+    padding: 4rem 0 2rem 0;
+    display: flex;
+    align-items: center;
+    div{
+      margin: 0 auto;
+      h1{
+        color: white;
+        font-size: 4rem;
+        font-weight: bold;
+        padding:0;
+        margin:0;
+      }
+      p{
+        color: white;
+        margin: 0;
+      }
+      button{
+        margin-top: 2rem !important;
+      }
+    }
+    
   }

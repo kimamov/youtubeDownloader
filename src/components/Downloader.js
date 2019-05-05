@@ -19,7 +19,7 @@ export default class App extends Component {
       '&options=quality:lowestaudio'
     ];
     this.selectedOptions=''
-    this.modes=['YOUTUBE DOWNLOADER','CLIENT SIDE DOWNLOAD','SERVER SIDE DOWNLOAD','LOW DATA MODE']
+    this.modes=['DOWNLOAD A VIDEO! :)','CLIENT SIDE DOWNLOAD','SERVER SIDE DOWNLOAD','LOW DATA MODE']
     this.state = {
         videoLink: '',
         videoInfo: [],
@@ -114,6 +114,7 @@ export default class App extends Component {
           <p>{this.state.videoInfo?this.state.videoInfo.title:''}</p>
           <img alt='' src={this.state.videoInfo.thumbnail}></img>
         </header>
+        
         <SearchBar onChange={this.onChange} getVideoInfo={this.getVideoInfo}></SearchBar>
         {this.state.dlSelected&&
         <FormatSelect 
@@ -125,7 +126,6 @@ export default class App extends Component {
           quickType={this.state.quickType}>
         </FormatSelect>
         }
-        </div>
         {this.state.dlSelected&&
         <Switch>
           <Route exact path='/' render={()=><Link 
@@ -142,6 +142,8 @@ export default class App extends Component {
           />
         </Switch>
         }
+        </div>
+        
         {this.state.dlSelected&&
           <Route path='/downloadlist' 
           render={()=><DownloadList videoSelect={this.state.videoInfo}/>} 
