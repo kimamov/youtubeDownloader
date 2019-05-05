@@ -24,17 +24,19 @@ export default class componentName extends Component {
         onClick={()=>this.setState({mobileNav: !this.state.mobileNav})} 
         className={`mobileNavToggle`}>
       </div>
-      <nav className={'mobileNav'}>
+      {this.state.mobileNav&&<nav className={'mobileNav'}>
         <div id='mobileNavOuter'>
         <div id='mobileNavInner' className={`mobileNavToggle ${this.state.mobileNav?'mobileNavToggleOpen':''}`}>
+          <div id='innerContainer'>
           <ul>
             <Link className={'somePadding undecoratedLink'} to='/'>OPTIONS</Link>
             <Link className={'somePadding undecoratedLink'} to='/'>HOW TO USE</Link>
             <Link className={'somePadding undecoratedLink'} to='/'>SCHEKEL</Link>
           </ul>
+          </div>
         </div>
         </div>
-      </nav>
+      </nav>}
       </div>
     )
   }

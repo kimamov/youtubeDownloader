@@ -5,7 +5,7 @@
 .App main {
   margin: 0 auto;
   width: 100%;
-  max-width: 50rem;
+  max-width: 82rem;
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
@@ -132,11 +132,6 @@
   z-index: 2;
 }
 
-.mobileNavToggleOpen {
-  height: 200% !important;
-  width: 200% !important;
-}
-
 @-webkit-keyframes openNav {
   0% {
     height: 0;
@@ -159,6 +154,10 @@
   }
 }
 
+/* .mobileNavToggleOpen{
+    height: 200% !important;
+    width: 200% !important;
+  } */
 .mobileNav {
   z-index: 1;
   position: absolute;
@@ -183,30 +182,39 @@
   height: 0%;
   width: 0%;
   position: absolute;
-  background-color: orange;
+  background-color: #d888e2;
   border-radius: 50%;
   top: -50%;
   right: -50%;
   overflow: hidden;
-  -webkit-transition: 1s;
-  transition: 1s;
+  -webkit-animation: openNav 1s forwards;
+          animation: openNav 1s forwards;
 }
 
-.mobileNav #mobileNavOuter ul {
+.mobileNav #mobileNavOuter #innerContainer {
   position: absolute;
   width: 100vw;
   height: 100vh;
   top: 50vh;
   right: 50vw;
-  padding: 0;
   display: -ms-grid;
   display: grid;
 }
 
-.mobileNav #mobileNavOuter ul a {
-  margin: 4rem 0 3rem 0;
+.mobileNav #mobileNavOuter #innerContainer ul {
+  -ms-grid-row-align: center;
+      align-self: center;
+  display: -ms-grid;
+  display: grid;
   padding: 0;
-  color: red;
+}
+
+.mobileNav #mobileNavOuter #innerContainer ul a {
+  padding: 1rem 0;
+  margin: 3rem 0;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 
 .navList {
@@ -214,8 +222,8 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  /* max-width: 40rem; */
-  max-width: 50rem;
+  /* max-width: 50rem; */
+  max-width: 82rem;
   /* justify-content: space-between; */
   padding: 0 !important;
 }

@@ -1,7 +1,8 @@
 $mainColor: white;
 $transparant: rgba(0,0,0,0);
 $bgColor: lightblue;
-
+$secondaryLight: rgb(216, 136, 226);
+$maxWidth: 82rem;
 $mobileSpacing: 100%;
 
 $mainRoundness: 0.2rem;
@@ -10,7 +11,7 @@ $mainRoundness: 0.2rem;
     main{
         margin: 0 auto;
         width: 100%;
-        max-width: 50rem;
+        max-width: $maxWidth;
     }
   }
 
@@ -136,10 +137,7 @@ $mainRoundness: 0.2rem;
     z-index: 2;
     
   }
-  .mobileNavToggleOpen{
-    height: 200% !important;
-    width: 200% !important;
-  }
+  
   @keyframes openNav{
     0%{
       height: 0;
@@ -149,11 +147,11 @@ $mainRoundness: 0.2rem;
       height: 200%;
       width: 200%;      
     }
-    
   }
-
-
-
+  /* .mobileNavToggleOpen{
+    height: 200% !important;
+    width: 200% !important;
+  } */
 
   .mobileNav{
     z-index: 1;
@@ -175,27 +173,34 @@ $mainRoundness: 0.2rem;
         height: 0%;
         width: 0%;
         position: absolute;
-        background-color: orange;
+        background-color: $secondaryLight;
         border-radius: 50%;
         top: -50%;
         right: -50%;
         overflow: hidden;
-        transition: 1s;
-
+        //transition: 1s;
+        animation: openNav 1s forwards
       }
-      ul{
+      #innerContainer{
         position: absolute;
         width: 100vw;
         height: 100vh;
         top: 50vh;
         right: 50vw;
-        padding: 0;
         display: grid;
-        a{
-         margin: 4rem 0 3rem 0;
-         padding: 0;
-         color: red;
+        ul{
+          align-self: center;
+          display: grid;
+          padding: 0;
+          a{
+            padding: 1rem 0;
+            margin: 3rem 0;
+            color: white;
+            font-size: 1.6rem;
+            font-weight: bold;
+           }
         }
+        
     }
     
     }
@@ -205,8 +210,8 @@ $mainRoundness: 0.2rem;
   .navList{
     margin: 0 auto;
     display: flex;
-    /* max-width: 40rem; */
-    max-width: 50rem;
+    /* max-width: 50rem; */
+    max-width: $maxWidth;
     /* justify-content: space-between; */
     padding: 0 !important;
   }
