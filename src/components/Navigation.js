@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
 
 export default class componentName extends Component {
     constructor(props) {
       super(props)
-    
       this.state = {
          mobileNav: false
       }
     }
-    
+  componentDidMount(){
+    console.log(window.location.pathname)
+  }
   render() {
     return (
       <div className='navComp'>
@@ -20,11 +21,13 @@ export default class componentName extends Component {
             <Link className={'somePadding undecoratedLink'} to='/'>INFO</Link>
         </ul>
       </nav>
-      <div 
-        onClick={()=>this.setState({mobileNav: !this.state.mobileNav})} 
+      <Link to={'./nav'}><div 
         className={`mobileNavToggle`}>
-      </div>
-      {this.state.mobileNav&&<nav className={'mobileNav'}>
+      </div></Link>
+      <Route path='/nav' render={()=><nav className={'mobileNav'}>
+        <Link to={'..'}><div 
+        className={`mobileNavToggle`}>
+        </div></Link>
         <div id='mobileNavOuter'>
         <div id='mobileNavInner' className={`mobileNavToggle ${this.state.mobileNav?'mobileNavToggleOpen':''}`}>
           <div id='innerContainer'>
@@ -36,7 +39,7 @@ export default class componentName extends Component {
           </div>
         </div>
         </div>
-      </nav>}
+      </nav>}/>
       </div>
     )
   }

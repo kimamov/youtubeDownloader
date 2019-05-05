@@ -10,14 +10,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div></div>
+        {/* <div></div> */}
         <Navigation></Navigation>
           <main>
             <Switch>
-              <Route exact path='/' component={Downloader}/>
             
-              <Route component={RouteUndef}/>
+              {/* <Route component={RouteUndef}/> */}
             </Switch>
+            <Route path='/' component={Downloader}/>
+
           </main>
       </div>
     );

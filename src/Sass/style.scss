@@ -4,25 +4,35 @@ $bgColor: lightblue;
 $secondaryLight: rgb(216, 136, 226);
 $maxWidth: 82rem;
 $mobileSpacing: 100%;
+$navHeight: 3rem;
 
 $mainRoundness: 0.2rem;
 .App {
     text-align: center;
+    
     main{
         margin: 0 auto;
         width: 100%;
-        max-width: $maxWidth;
+        /* max-width: $maxWidth; */
+        background-color: $bgColor;
     }
   }
 
-  @media (min-width: 320px) and (max-width: 480px) {
+  @media (min-width: 20px) and (max-width: 480px) {
     .App {
       main{
         height: 100vh;
+        overflow: hidden;
         background-image: linear-gradient(lightblue,violet);
       }
+      .downloadContainer{
+        height: 100%;
+        display: flex;
+        
+      }
       #dlComponent{
-        padding: 3rem 1rem 2rem 1rem;
+        align-self: center;
+        padding: 0rem 1rem 2rem 1rem;
         border-radius: 0;
         background-color: transparent;
       }
@@ -31,20 +41,55 @@ $mainRoundness: 0.2rem;
       }
     }
     .topNav{
-      display: none;
+      display: none !important;
     }
     .mobileNavToggle{
       display: block !important;
     }
+    .downloadList{
+      position: absolute;
+      top: 0;
+      height: 100%;
+      overflow: hidden;
+      background-image: linear-gradient(lightblue,violet);;
+      z-index: 2;
+      .downloadListHeader{
+        border-radius: $mainRoundness;
+        border: 1px solid black;
+        margin: 0 1rem;
+        height: 8rem;
+      }
+    }
+    .listContainer{
+      height: calc(100% - 10rem) !important;
+      padding: 1rem 0;
+      width: 94% !important;
+      margin: 0 auto;
+      div{
+        display: grid;
+        padding: 0.5rem 0;
+        grid-template-columns: 1fr 1fr 1fr;
+        p,a{
+          align-self: center;
+          margin: 0;
+        }
+        
+      }
+    }
+    .downloadListToggle{
+      position: absolute;
+      z-index: 1;
+      top: 90%;
+      left: 10%;
+    }
     }
   #dlComponent{
     text-align: center;
-    background-color: $bgColor;
-    max-width: 30rem;
-    /* margin: 0 auto; */
-    padding: 1rem 0 2rem 0;
+    /* background-color: $bgColor; */
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 1rem 1rem 2rem 1rem;
     border-radius: 0.6rem;
-   
   }
   
   .App-link {
@@ -52,10 +97,10 @@ $mainRoundness: 0.2rem;
   }
   
   #videoSearchForm{
-    padding: 0 0 1rem 0;
+    padding: 0 0 2rem 0;
     display: block;
     width: $mobileSpacing;
-    max-width: 24rem;
+    max-width: 34rem;
     margin: 0 auto;
 
     div{
@@ -95,16 +140,7 @@ $mainRoundness: 0.2rem;
     background-color: black !important;
   }
   
-  
-  .topNav{
-    z-index: 1;
-    /* position: fixed; */
-    top: 0;
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-    padding: 0;
-    /* border-bottom: 0.1rem solid rgba(200,200,200,0.6); */
-  }
+
   
 /*   .mobileNav{
     z-index: 1;
@@ -134,8 +170,7 @@ $mainRoundness: 0.2rem;
     top: 1rem;
     background-color: rgba(35, 172, 190, 0.349);
     border-radius: 50%;
-    z-index: 2;
-    
+    z-index: 1;
   }
   
   @keyframes openNav{
@@ -205,7 +240,24 @@ $mainRoundness: 0.2rem;
     
     }
   }
-
+  
+  .topNav{
+    z-index: 1;
+    /* position: fixed; */
+    top: 0;
+    height: $navHeight;
+    display: grid;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 0;
+    /* border-bottom: 0.1rem solid rgba(200,200,200,0.6); */
+    ul{
+      align-self: center;
+      a{
+        margin: 0 4rem;
+      }
+    }
+  }
 
   .navList{
     margin: 0 auto;
@@ -218,7 +270,6 @@ $mainRoundness: 0.2rem;
   
   .navList>.somePadding{
     list-style: none;
-    padding: 0.2rem 1rem 0.4rem 1rem;
     cursor: pointer;
   }
 
@@ -234,7 +285,7 @@ $mainRoundness: 0.2rem;
   }
 
   .typeSelect{
-      max-width: 24rem;
+      max-width: 34rem;
       width: $mobileSpacing;
       margin: 0 auto;
       .radioButtons{
@@ -275,4 +326,47 @@ $mainRoundness: 0.2rem;
             margin: 0;
         }
       }
+  }
+
+  .downloadContainer{
+   /* background-color: $bgColor; */
+   height: calc(100vh - 3rem);
+   overflow: auto;
+  }
+  .downloadList{
+    max-width: 40rem;
+    margin: 0 auto;
+    .downloadListHeader{
+      border-radius: $mainRoundness;
+      border: 1px solid black;
+      margin: 0 1rem;
+    }
+  }
+  .listContainer{
+    height: 36rem;
+    overflow: auto;
+    width: 100%;
+    div{
+      display: grid;
+      padding: 0.5rem 0;
+      grid-template-columns: 1fr 1fr 1fr;
+      p,a{
+        align-self: center;
+        margin: 0;
+      }
+    }
+  }
+
+  .downloadListToggle{
+    border-radius: 50%;
+    background-color: orange;
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    p{
+      margin: 0 auto;
+    }
   }

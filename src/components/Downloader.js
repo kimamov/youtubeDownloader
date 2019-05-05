@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {Link, Route} from 'react-router-dom'
 import SearchBar from './SearchBar.js'
+import DownloadList from './DownloadList'
+import About from './About'
 import FormatSelect from './FormatSelect.js'
 const BASEURL='http://82.165.121.77:5000/'
 
@@ -9,33 +12,53 @@ export default class App extends Component {
     super(props)
     this.dlOptions=["dl","audio"]
     this.dlMode=0;
-    this.mainQuery=['','','']
-    this.modes=['CLIENT SIDE DOWNLOAD','SERVER SIDE DOWNLOAD','LOW DATA MODE']
+    this.quickQueryOtions=[
+      '',
+      '&options=quality:highest',
+      '&options=filter:audioonly',
+      '&options=quality:lowestaudio'
+    ];
+    this.selectedOptions=''
+    this.modes=['YOUTUBE DOWNLOADER','CLIENT SIDE DOWNLOAD','SERVER SIDE DOWNLOAD','LOW DATA MODE']
     this.state = {
         videoLink: '',
         videoInfo: [],
         typeSelect: 0,
-        quickType: "1",
-        dlSelected: true,
-        mode: 0
+        quickType: "0",
+        dlSelected: false,
+        mode: 0,
+        downloadListOpen: false
     }
   }
   onChange=(event)=>{
     const name=event.target.name
     this.setState({[name]:event.target.value})
   }
+  onChangeType=(event)=>{
+    const name=event.target.name
+    this.setState({[name]:event.target.value},
+      ()=>{
+        if(name==='quickType'){
+          this.selectedOptions=this.quickQueryOtions[this.state.quickType]
+        }else if(name==='typeSelect'){
+          this.selectedOptions=`&options=quality:${this.state.videoInfo.formats[this.state.typeSelect].itag}`
+        }
+      })
+  }
   getVideo=(event)=>{
     event.preventDefault()
-    let dlWindow=window.open(`${BASEURL}${this.dlOptions[this.dlMode]}?videolink=${this.state.videoLink}`)
+    const optionsQuery=this.selectedOptions
+    let dlWindow=window.open(`${BASEURL}${this.dlOptions[this.dlMode]}?videolink=${this.state.videoLink}${optionsQuery}`)
     setTimeout(()=>{window.close(dlWindow)},8000)
     
   }
   getVideoInfo=(event)=>{
     event.preventDefault()
+    console.log(History)
     axios.get(`${BASEURL}simpleinfo?videolink=${this.state.videoLink}`).then(res=>{
       console.log(res)
       if(res.data.formats){
-        this.setState({videoInfo: res.data,dlSelected: true})
+        this.setState({videoInfo: res.data,dlSelected: true,quickType: '0',typeSelect: 0})
       }
       
     }).catch(error=>{
@@ -84,6 +107,7 @@ export default class App extends Component {
   }
   render() {
     return (
+      <div className={'downloadContainer'}>
         <div id='dlComponent'>
         <h1>{this.modes[this.state.mode]}</h1>
         <header className="App-header">
@@ -93,7 +117,7 @@ export default class App extends Component {
         <SearchBar onChange={this.onChange} getVideoInfo={this.getVideoInfo}></SearchBar>
         {this.state.dlSelected&&
         <FormatSelect 
-          onChange={this.onChange}
+          onChange={this.onChangeType}
           //onSubmit={(event,url)=>this.dlVideo(event,"http://localhost:5000/dl?videolink=https://www.youtube.com/watch?v=GSLPOmQV9_w"/* this.state.videoInfo.formats[this.state.typeSelect].url */)}
           onSubmit={this.getVideo}  
           typeSelect={this.state.typeSelect} 
@@ -102,7 +126,18 @@ export default class App extends Component {
         </FormatSelect>
         }
         </div>
-      
+        {this.state.dlSelected&&<Link 
+          to='/downloadlist'
+          className={'downloadListToggle undecoratedLink'}        >
+          <p>OPEN</p>
+        </Link>}
+        {this.state.dlSelected&&
+          <Route path='/downloadlist' 
+          render={()=><DownloadList videoSelect={this.state.videoInfo}/>} 
+          />        
+        }
+        <About></About>
+      </div>
     )
   }
 }

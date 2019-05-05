@@ -5,17 +5,28 @@
 .App main {
   margin: 0 auto;
   width: 100%;
-  max-width: 82rem;
+  /* max-width: $maxWidth; */
+  background-color: lightblue;
 }
 
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 20px) and (max-width: 480px) {
   .App main {
     height: 100vh;
+    overflow: hidden;
     background-image: -webkit-gradient(linear, left top, left bottom, from(lightblue), to(violet));
     background-image: linear-gradient(lightblue, violet);
   }
+  .App .downloadContainer {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
   .App #dlComponent {
-    padding: 3rem 1rem 2rem 1rem;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    padding: 0rem 1rem 2rem 1rem;
     border-radius: 0;
     background-color: transparent;
   }
@@ -23,19 +34,59 @@
     font-size: 0.6rem !important;
   }
   .topNav {
-    display: none;
+    display: none !important;
   }
   .mobileNavToggle {
     display: block !important;
+  }
+  .downloadList {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    overflow: hidden;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(lightblue), to(violet));
+    background-image: linear-gradient(lightblue, violet);
+    z-index: 2;
+  }
+  .downloadList .downloadListHeader {
+    border-radius: 0.2rem;
+    border: 1px solid black;
+    margin: 0 1rem;
+    height: 8rem;
+  }
+  .listContainer {
+    height: calc(100% - 10rem) !important;
+    padding: 1rem 0;
+    width: 94% !important;
+    margin: 0 auto;
+  }
+  .listContainer div {
+    display: -ms-grid;
+    display: grid;
+    padding: 0.5rem 0;
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+  }
+  .listContainer div p, .listContainer div a {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    margin: 0;
+  }
+  .downloadListToggle {
+    position: absolute;
+    z-index: 1;
+    top: 90%;
+    left: 10%;
   }
 }
 
 #dlComponent {
   text-align: center;
-  background-color: lightblue;
-  max-width: 30rem;
-  /* margin: 0 auto; */
-  padding: 1rem 0 2rem 0;
+  /* background-color: $bgColor; */
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 2rem 1rem;
   border-radius: 0.6rem;
 }
 
@@ -44,10 +95,10 @@
 }
 
 #videoSearchForm {
-  padding: 0 0 1rem 0;
+  padding: 0 0 2rem 0;
   display: block;
   width: 100%;
-  max-width: 24rem;
+  max-width: 34rem;
   margin: 0 auto;
 }
 
@@ -91,16 +142,6 @@
   background-color: black !important;
 }
 
-.topNav {
-  z-index: 1;
-  /* position: fixed; */
-  top: 0;
-  width: 100%;
-  background-color: white;
-  padding: 0;
-  /* border-bottom: 0.1rem solid rgba(200,200,200,0.6); */
-}
-
 /*   .mobileNav{
     z-index: 1;
     position: absolute;
@@ -129,7 +170,7 @@
   top: 1rem;
   background-color: rgba(35, 172, 190, 0.349);
   border-radius: 50%;
-  z-index: 2;
+  z-index: 1;
 }
 
 @-webkit-keyframes openNav {
@@ -217,6 +258,29 @@
   font-weight: bold;
 }
 
+.topNav {
+  z-index: 1;
+  /* position: fixed; */
+  top: 0;
+  height: 3rem;
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+  background-color: white;
+  padding: 0;
+  /* border-bottom: 0.1rem solid rgba(200,200,200,0.6); */
+}
+
+.topNav ul {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.topNav ul a {
+  margin: 0 4rem;
+}
+
 .navList {
   margin: 0 auto;
   display: -webkit-box;
@@ -230,7 +294,6 @@
 
 .navList > .somePadding {
   list-style: none;
-  padding: 0.2rem 1rem 0.4rem 1rem;
   cursor: pointer;
 }
 
@@ -244,7 +307,7 @@
 }
 
 .typeSelect {
-  max-width: 24rem;
+  max-width: 34rem;
   width: 100%;
   margin: 0 auto;
 }
@@ -297,5 +360,65 @@
 .typeSelect .advancedType select {
   border: none;
   margin: 0;
+}
+
+.downloadContainer {
+  /* background-color: $bgColor; */
+  height: calc(100vh - 3rem);
+  overflow: auto;
+}
+
+.downloadList {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.downloadList .downloadListHeader {
+  border-radius: 0.2rem;
+  border: 1px solid black;
+  margin: 0 1rem;
+}
+
+.listContainer {
+  height: 36rem;
+  overflow: auto;
+  width: 100%;
+}
+
+.listContainer div {
+  display: -ms-grid;
+  display: grid;
+  padding: 0.5rem 0;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+}
+
+.listContainer div p, .listContainer div a {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin: 0;
+}
+
+.downloadListToggle {
+  border-radius: 50%;
+  background-color: orange;
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.downloadListToggle p {
+  margin: 0 auto;
 }
 /*# sourceMappingURL=style.css.map */
