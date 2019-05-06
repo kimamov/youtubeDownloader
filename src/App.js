@@ -10,7 +10,7 @@ import Navigation from './components/Navigation.js'
 class App extends Component {
   render() {
     return (
-      <div style={{minHeight: window.innerHeight}} className={'App'}>
+      <div style={{height: window.innerHeight}} className={'App'}>
         {/* <div></div> */}
         <Navigation></Navigation>
           <main>
@@ -18,7 +18,7 @@ class App extends Component {
               {/* <Route component={RouteUndef}/> */}
             </Switch>
             <section className={'mainSection'}>
-            <WelcomeBanner></WelcomeBanner>
+            {/* <WelcomeBanner></WelcomeBanner> */}
             <Route path='/' component={Downloader}/>
             </section>
           </main>

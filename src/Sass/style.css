@@ -4,11 +4,14 @@
   background-image: linear-gradient(lightblue, violet);
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
 }
 
 .App main {
   margin: 0 auto;
   width: 100%;
+  height: 100%;
+  overflow: scroll !important;
   /* max-width: $maxWidth; */
   /* background-color: $bgColor; */
 }
@@ -77,15 +80,41 @@
   background-color: black !important;
 }
 
+.nameSelect {
+  width: 100%;
+  max-width: 34rem;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 2rem;
+  overflow: hidden;
+}
+
+.nameSelect input {
+  width: 94%;
+  margin: 0 auto;
+  border: none;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.nameSelect input:focus {
+  outline: none;
+}
+
+.nameSelect p {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: lighter;
+  color: grey;
+}
+
 @media (min-width: 20px) and (max-width: 480px) {
   .App #welcomeBanner {
     display: none !important;
   }
   .App main {
-    height: 100%;
+    height: 100% !important;
     overflow: hidden;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(lightblue), to(violet));
-    background-image: linear-gradient(lightblue, violet);
   }
   .App main .mainSection {
     height: 100%;
@@ -103,6 +132,7 @@
         align-self: center;
     padding: 0rem 1rem 2rem 1rem;
     border-radius: 0;
+    width: 100%;
     background-color: transparent;
   }
   .App #dlComponent #videoSearchForm div {
@@ -112,7 +142,8 @@
     border-radius: 0;
   }
   .App #dlComponent #videoSearchForm input[type='text'] {
-    border-radius: 0.2rem;
+    /* border-radius: $mainRoundness; */
+    border-radius: 2rem;
     margin: 0.4rem auto;
     padding: 0.4rem 0;
     background-color: white;
@@ -209,6 +240,7 @@
     height: 200% !important;
     width: 200% !important;
   } */
+/* MOBILE NAV ANIMATION DIV SOUP */
 .mobileNav {
   z-index: 1;
   position: absolute;
@@ -270,13 +302,11 @@
 
 .topNav {
   z-index: 1;
-  /* position: fixed; */
   top: 0;
   height: 3rem;
   display: -ms-grid;
   display: grid;
   width: 100%;
-  background-color: white;
   padding: 0;
   /* border-bottom: 0.1rem solid rgba(200,200,200,0.6); */
 }
@@ -379,7 +409,8 @@
 
 .downloadContainer {
   /* background-color: $bgColor; */
-  height: calc(100% - 3rem);
+  /* height: calc(100% - 3rem); */
+  height: 100%;
   overflow: auto;
 }
 

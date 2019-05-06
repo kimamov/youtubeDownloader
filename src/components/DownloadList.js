@@ -14,7 +14,7 @@ const DownloadList = (props) => {
             <div value={index}>
                 <p>{'type: '+item.type}</p>
                 <p>{' quality: '+ item.quality+ ' '+(item.videoOnly?'only video':'')}</p>
-                <a href={item.url} Download>VIDEO</a>
+                <a href={item.url} Download={`${props.videoName}.mp4`}>VIDEO</a>
             </div>
             )}
         </div>    
