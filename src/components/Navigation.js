@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {Link, Route} from 'react-router-dom'
+import BackButton from './BackButton.js'
+
 
 export default class componentName extends Component {
     constructor(props) {
@@ -24,10 +26,12 @@ export default class componentName extends Component {
       <Link to={'./nav'}><div 
         className={`mobileNavToggle`}>
       </div></Link>
-      <Route path='/nav' render={()=><nav className={'mobileNav'}>
-        <Link to={'..'}><div 
-        className={`mobileNavToggle`}>
-        </div></Link>
+      <Route path='/nav' render={({history})=><nav className={'mobileNav'}>
+        <BackButton
+            history={history} 
+            cssStyle={'mobileNavToggle'}>
+            <p>CLOSE</p>
+        </BackButton>
         <div id='mobileNavOuter'>
         <div id='mobileNavInner' className={`mobileNavToggle ${this.state.mobileNav?'mobileNavToggleOpen':''}`}>
           <div id='innerContainer'>

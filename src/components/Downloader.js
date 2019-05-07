@@ -4,6 +4,7 @@ import {Link, Route, Switch} from 'react-router-dom'
 import SearchBar from './SearchBar.js'
 import NameSelect from './NameSelect.js'
 import DownloadList from './DownloadList'
+import BackButton from './BackButton.js'
 import About from './About'
 import FormatSelect from './FormatSelect.js'
 const BASEURL='http://82.165.121.77:5000/'
@@ -26,7 +27,7 @@ export default class App extends Component {
         videoInfo: [],
         typeSelect: 0,
         quickType: "0",
-        dlSelected: false,
+        dlSelected: true,
         mode: 0,
         downloadListOpen: false,
         videoName: ''
@@ -61,7 +62,13 @@ export default class App extends Component {
     axios.get(`${BASEURL}simpleinfo?videolink=${this.state.videoLink}`).then(res=>{
       console.log(res)
       if(res.data.formats){
-        this.setState({videoInfo: res.data,videoName:res.data.title,dlSelected: true,quickType: '0',typeSelect: 0})
+        this.setState(
+          {videoInfo: res.data,
+            videoName:res.data.title,
+            dlSelected: true,
+            quickType: '0',
+            typeSelect: 0
+          })
       }
       
     }).catch(error=>{
@@ -73,9 +80,8 @@ export default class App extends Component {
     axios({
       url: url,
       method: 'GET',
-      responseType: 'blob', // important
+      responseType: 'blob', 
     }).then((response) => {
-       console.log('succes')
        const url = window.URL.createObjectURL(new Blob([response.data]));
        const link = document.createElement('a');
        link.href = url;
@@ -90,9 +96,8 @@ export default class App extends Component {
     axios({
       url: url,
       method: 'GET',
-      responseType: 'blob', // important
+      responseType: 'blob', 
     }).then((response) => {
-       console.log('succes')
        const url = window.URL.createObjectURL(new Blob([response.data]));
        const link = document.createElement('a');
        link.href = url;
@@ -138,11 +143,12 @@ export default class App extends Component {
             <p>OPEN</p>
             </Link>}
           />
-          <Route path='/downloadlist' render={()=><Link 
-            to='..'
-            className={'downloadListToggle undecoratedLink'}>
+          <Route path='/downloadlist' render={({history})=><BackButton
+            history={history} 
+            onClick={()=>console.log('hey')}
+            cssStyle={'downloadListToggle undecoratedLink'}>
             <p>CLOSE</p>
-            </Link>}
+            </BackButton>}
           />
         </Switch>
         }
