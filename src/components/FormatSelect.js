@@ -2,7 +2,7 @@ import React from 'react'
 
 const FormatSelect = (props) => {
   return (
-    <form onSubmit={props.onSubmit} className={'typeSelect'}>
+    <form onSubmit={props.onSubmit} className={'typeSelect slideInFromTop'}>
         <div>SELECT A FORMAT</div>
         <div className={'radioButtons'}>
         <input id='quickTypeSelect1' onChange={props.onChange} checked={props.quickType==="1"} value={"1"} name='quickType' type='radio'></input>

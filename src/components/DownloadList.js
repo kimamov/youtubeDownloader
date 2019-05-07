@@ -1,11 +1,17 @@
 import React from 'react'
+import BackButton from './BackButton.js'
 import {Link} from 'react-router-dom'
 
 
 const DownloadList = (props) => {
   return (
-    <div className={'downloadList'}>
+    <div className={'downloadList slideInFromTop'}>
         <div className={'downloadListHeader'}>
+            <BackButton
+            history={props.history} 
+            cssStyle={'downloadListClose'}>
+            <p></p>
+            </BackButton>
             <h1>LIST OF FORMATS</h1>
             <p>SAVE AS FROM HERE</p>
         </div>

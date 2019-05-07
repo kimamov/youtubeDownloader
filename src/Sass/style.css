@@ -32,6 +32,13 @@
   color: #61dafb;
 }
 
+.slideInFromTop {
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  -webkit-animation: slideInDiv 1s;
+          animation: slideInDiv 1s;
+}
+
 #videoSearchForm {
   padding: 0 0 2rem 0;
   display: block;
@@ -173,6 +180,9 @@
   .downloadList .downloadListHeader {
     height: 7rem;
   }
+  .downloadList .downloadListHeader .downloadListClose {
+    display: none;
+  }
   .downloadList .listContainer {
     padding-bottom: 8rem;
     /* ADD UP TO 100% with 7rem Header and 8rem padding */
@@ -182,10 +192,17 @@
   }
   .downloadListToggle {
     background-color: rgba(180, 200, 200, 0.4) !important;
+    width: 4rem !important;
+    height: 4rem !important;
     position: absolute;
     z-index: 2;
     bottom: 1%;
     left: 1%;
+  }
+  .mobileBack {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
   }
 }
 
@@ -414,6 +431,28 @@
   margin: 0;
 }
 
+@-webkit-keyframes slideInDiv {
+  0% {
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes slideInDiv {
+  0% {
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
 .downloadContainer {
   /* background-color: $bgColor; */
   /* height: calc(100% - 3rem); */
@@ -452,12 +491,25 @@
   margin: 0;
 }
 
-.downloadListToggle {
-  border-radius: 50%;
-  background-color: orange;
-  width: 4rem;
-  height: 4rem;
+.downloadListClose {
   margin: 0 auto;
+  height: 3rem;
+  width: 3rem;
+  background-color: white;
+}
+
+.downloadListClose p {
+  margin: 0.2rem;
+}
+
+.downloadListToggle {
+  border-radius: 2rem;
+  font-weight: bold;
+  border: 1px solid grey;
+  background-color: white;
+  width: 12rem;
+  height: 2.6rem;
+  margin: 2rem auto 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -472,6 +524,10 @@
 
 .downloadListToggle p {
   margin: 0 auto;
+}
+
+.mobileBack {
+  display: none;
 }
 
 .fullSizeBg {

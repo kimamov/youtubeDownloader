@@ -42,7 +42,10 @@ $mainRoundness: 0.2rem;
   .App-link {
     color: #61dafb;
   }
-  
+  .slideInFromTop{
+    transform-origin: top;
+    animation: slideInDiv 1s;
+  }
   #videoSearchForm{
     padding: 0 0 2rem 0;
     display: block;
@@ -175,6 +178,9 @@ $mainRoundness: 0.2rem;
       overflow: hidden;
       .downloadListHeader{
         height: 7rem;
+        .downloadListClose{
+          display: none;
+        }
       }
       .listContainer{
         padding-bottom: 8rem;
@@ -187,10 +193,15 @@ $mainRoundness: 0.2rem;
  
     .downloadListToggle{
       background-color: rgba(180,200,200,0.4) !important;
+      width: 4rem !important;
+      height: 4rem !important;
       position: absolute;
       z-index: 2;
       bottom: 1%;
       left: 1%;
+    }
+    .mobileBack{
+      display: flex !important;
     }
     }
   
@@ -387,7 +398,14 @@ $mainRoundness: 0.2rem;
         }
       }
   }
-
+  @keyframes slideInDiv{
+    0%{
+      transform: scale(0.1);
+    }
+    100%{
+      transform: scale(1)
+    }
+  }
   .downloadContainer{
    /* background-color: $bgColor; */
    /* height: calc(100% - 3rem); */
@@ -417,18 +435,35 @@ $mainRoundness: 0.2rem;
     }
   }
 
-  .downloadListToggle{
-    border-radius: 50%;
-    background-color: orange;
-    width: 4rem;
-    height: 4rem;
+  .downloadListClose{
     margin: 0 auto;
+    height: 3rem;
+    width: 3rem;
+    background-color: white;
+    p{
+      margin: 0.2rem;
+    }
+  }
+
+  .downloadListToggle{
+    //border-radius: 50%;
+    border-radius: 2rem;
+    font-weight: bold;
+    border: 1px solid grey;
+    background-color: white;
+    width: 12rem;
+    height: 2.6rem;
+    margin: 2rem auto 0 auto;
     display: flex;
     align-items: center;
     user-select: none;
+    
     p{
       margin: 0 auto;
     }
+  }
+  .mobileBack{
+    display: none;
   }
 
   .fullSizeBg{

@@ -22,16 +22,19 @@ export default class App extends Component {
     ];
     this.selectedOptions=''
     this.modes=['DOWNLOAD A VIDEO! :)','CLIENT SIDE DOWNLOAD','SERVER SIDE DOWNLOAD','LOW DATA MODE']
+    
     this.state = {
-        videoLink: '',
+        videoLink: this.linkFromQuery(this.props.location.search) || '',
         videoInfo: [],
         typeSelect: 0,
         quickType: "0",
-        dlSelected: true,
+        dlSelected: false,
         mode: 0,
         downloadListOpen: false,
         videoName: ''
     }
+    this.stateFromQuery()
+
   }
   onChange=(event)=>{
     const name=event.target.name
@@ -57,8 +60,9 @@ export default class App extends Component {
     
   }
   getVideoInfo=(event)=>{
-    event.preventDefault()
-    console.log(History)
+    if(event){
+      event.preventDefault()
+    }
     axios.get(`${BASEURL}simpleinfo?videolink=${this.state.videoLink}`).then(res=>{
       console.log(res)
       if(res.data.formats){
@@ -109,9 +113,26 @@ export default class App extends Component {
     });
   }
   componentDidMount(){
-    /* this.dlVideo(
-      'https://r3---sn-8xgn5uxa-cxge.googlevideo.com/videoplayback?id=o-AKNbby6tD8YKTUiQYAc_6vcEc3qcOSWIOsegXr0iLgJV&aitags=133,134,135,136,160,242,243,244,247,278,298,302,394,395,396,397&itag=394&source=youtube&requiressl=yes&mm=31,29&mn=sn-8xgn5uxa-cxge,sn-4g5e6nld&ms=au,rdu&mv=m&pcm2cms=yes&pl=24&ei=7UrLXPaHPNHVgQery4PYBA&initcwndbps=1396250&mime=video/mp4&gir=yes&clen=5470553&dur=638.533&lmt=1556822908874006&mt=1556826777&fvip=3&keepalive=yes&c=WEB&txp=5531432&ip=88.130.48.98&ipbits=0&expire=1556848462&sparams=ip,ipbits,expire,id,aitags,source,requiressl,mm,mn,ms,mv,pcm2cms,pl,ei,initcwndbps,mime,gir,clen,dur,lmt&signature=C647A6E17406246772D2966AA253766F2B07BB69.9586DA6C4FC28D0AF095AE556A1E042A00063CE5&key=yt8&ratebypass=yes%27'
-      ) */
+ 
+  }
+  stateFromQuery=()=>{
+    const videoQuery=this.props.location.search;
+    if(this.linkFromQuery(videoQuery)){
+        this.getVideoInfo()
+      }
+  }
+  linkFromQuery=(query)=>{
+    if(query){
+      const queryParts=query.split('?video=')
+      if(queryParts[0]===''){
+        const regEx = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        var match = queryParts[1].match(regEx);
+        if ( match && match[7].length === 11 ){
+          return queryParts[1]
+        }
+      }
+    
+    }
   }
   render() {
     return (
@@ -136,27 +157,26 @@ export default class App extends Component {
         </FormatSelect>
         </div>}
         {this.state.dlSelected&&
-        <Switch>
+          <Switch>
           <Route exact path='/' render={()=><Link 
-            to='/downloadlist'
+            to={`/downloadlist/${this.props.location.search}`}
             className={'downloadListToggle undecoratedLink'}>
-            <p>OPEN</p>
+            <p>ADVANCED</p>
             </Link>}
           />
-          <Route path='/downloadlist' render={({history})=><BackButton
+          <Route exact path='/downloadlist' render={({history})=><BackButton 
             history={history} 
-            onClick={()=>console.log('hey')}
-            cssStyle={'downloadListToggle undecoratedLink'}>
-            <p>CLOSE</p>
+            cssStyle={'downloadListToggle mobileBack'}>
+            <p>ADVANCED</p>
             </BackButton>}
           />
-        </Switch>
+          </Switch>
         }
         </div>
         
         {this.state.dlSelected&&
           <Route path='/downloadlist' 
-          render={()=><DownloadList videoName={this.state.videoName} videoSelect={this.state.videoInfo}/>} 
+          render={({history})=><DownloadList history={history} videoName={this.state.videoName} videoSelect={this.state.videoInfo}/>} 
           />        
         }
         <About></About>
