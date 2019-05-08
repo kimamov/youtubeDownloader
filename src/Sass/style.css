@@ -11,18 +11,15 @@
   margin: 0 auto;
   width: 100%;
   height: 100%;
-  overflow: scroll !important;
+  overflow: auto !important;
   /* max-width: $maxWidth; */
   /* background-color: $bgColor; */
-}
-
-.App main .mainSection {
-  /* background-color: white; */
 }
 
 #dlComponent {
   text-align: center;
   max-width: 40rem;
+  width: 100%;
   margin: 0 auto;
   padding: 1rem 1rem 2rem 1rem;
   border-radius: 1rem;
@@ -43,7 +40,7 @@
   padding: 0 0 2rem 0;
   display: block;
   width: 100%;
-  max-width: 34rem;
+  max-width: 40rem;
   margin: 0 auto;
 }
 
@@ -89,7 +86,7 @@
 
 .nameSelect {
   width: 100%;
-  max-width: 34rem;
+  max-width: 40rem;
   margin: 0 auto;
   background-color: white;
   border-radius: 2rem;
@@ -145,10 +142,6 @@
     height: 100% !important;
     overflow: hidden;
   }
-  .App main .mainSection {
-    height: 100%;
-    background-color: transparent !important;
-  }
   .App .downloadContainer {
     height: 100%;
     display: -webkit-box;
@@ -163,6 +156,10 @@
     border-radius: 0;
     width: 100%;
     background-color: transparent;
+  }
+  .App #dlComponent h1 {
+    margin: 0;
+    padding: 0;
   }
   .App #dlComponent #videoSearchForm div {
     border: none;
@@ -406,7 +403,7 @@
 }
 
 .typeSelect {
-  max-width: 34rem;
+  max-width: 40rem;
   width: 100%;
   margin: 0 auto;
 }
@@ -429,7 +426,7 @@
 }
 
 .typeSelect .radioButtons label {
-  border-radius: 0.2rem;
+  border-radius: 2rem;
   display: block;
   background-color: white;
   padding: 0.4rem 0 0.4rem 0;
@@ -452,7 +449,7 @@
 .typeSelect .advancedType {
   background-color: white;
   max-width: 24rem;
-  border-radius: 0.2rem;
+  border-radius: 2rem;
   margin: 1rem auto 1rem auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -501,7 +498,7 @@
 }
 
 .downloadList .downloadListHeader {
-  border-radius: 0.2rem;
+  border-radius: 2rem;
   border: 1px solid black;
   margin: 0 1rem;
 }

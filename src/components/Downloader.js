@@ -7,8 +7,7 @@ import DownloadList from './DownloadList'
 import BackButton from './BackButton.js'
 import About from './About'
 import FormatSelect from './FormatSelect.js'
-//const BASEURL='http://82.165.121.77:5000/'
-const BASEURL='http://localhost:5000/'
+const BASEURL='http://82.165.121.77:5000/'
 
 export default class App extends Component {
   constructor(props) {
@@ -16,7 +15,7 @@ export default class App extends Component {
     this.dlOptions=["dl","audio"]
     this.dlMode=0;
     this.quickQueryOtions=[
-      {options:'',mime:'mp4'},
+      {options:'',mime:'&mime=mp4'},
       {options:'&options=quality:highest',mime:'&mime=mp4'},
       {options:'&options=filter:audioonly',mime:'&mime=mp4'},
       {options:'&options=quality:lowestaudio',mime:'&mime=webm'}
