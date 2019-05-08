@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div style={{height: window.innerHeight}} className={'App'}>
         {/* <div></div> */}
-        <Navigation></Navigation>
+        <Route path='' component={Navigation}/>
           <main>
             <Switch>
               {/* <Route component={RouteUndef}/> */}

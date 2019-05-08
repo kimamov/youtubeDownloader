@@ -114,6 +114,14 @@ $mainRoundness: 0.2rem;
     }
   }
 
+  @keyframes pushFromTop{
+    0%{
+      transform: translateY(100%);
+    }
+    100%{
+      transform: translateY(0);
+    }
+  }
   @media (min-width: 20px) and (max-width: 480px) {
     .App {
       #welcomeBanner{
@@ -166,7 +174,11 @@ $mainRoundness: 0.2rem;
       display: none !important;
     }
     .mobileNavToggle{
-      display: block !important;
+      display: flex !important;
+      align-items: center;
+      *{
+        margin: 0 auto;
+      }
     }
     .downloadList{
       position: absolute;
@@ -176,6 +188,7 @@ $mainRoundness: 0.2rem;
       background-image: linear-gradient(lightblue,violet);
       z-index: 1;
       overflow: hidden;
+      animation: pushFromTop 0.5s ease-in;
       .downloadListHeader{
         height: 7rem;
         .downloadListClose{
@@ -193,17 +206,20 @@ $mainRoundness: 0.2rem;
  
     .downloadListToggle{
       background-color: rgba(180,200,200,0.4) !important;
-      width: 4rem !important;
-      height: 4rem !important;
-      position: absolute;
+      position: fixed;
       z-index: 2;
       bottom: 1%;
       left: 1%;
+      i{
+        font-size: 2.4rem;
+      }
     }
     .mobileBack{
       display: flex !important;
+      width: 3rem !important;
+      height: 3rem !important;
     }
-    }
+  }
   
   
 
@@ -237,6 +253,7 @@ $mainRoundness: 0.2rem;
     background-color: rgba(35, 172, 190, 0.349);
     border-radius: 50%;
     z-index: 1; 
+
   }
   
   @keyframes openNav{
@@ -435,16 +452,45 @@ $mainRoundness: 0.2rem;
     }
   }
 
+
   .downloadListClose{
+    cursor: pointer;
     margin: 0 auto;
+    border-radius: 50%;
+    border: 1px solid grey;
     height: 3rem;
     width: 3rem;
-    background-color: white;
+    display: flex;
+    align-items: center;
+    animation: spin90 1.5s;
     p{
-      margin: 0.2rem;
+      margin: 0.2rem auto;
+    }
+    i{
+      margin: 0 auto;
+      font-size: 2.4rem;
     }
   }
-
+  @keyframes spin90{
+    0%{
+      opacity: 0;
+      transform: rotateZ(270deg);
+    }
+    100%{
+      opacity: 1;
+      transform: rotateZ(0deg);
+    }
+  }
+  .spinLoad{
+    animation: spin90 1.5s;
+  }
+  .centerAll{
+    display: flex;
+    align-items: center;
+    *{
+      margin: 0 auto;
+    }
+  }
   .downloadListToggle{
     //border-radius: 50%;
     border-radius: 2rem;
@@ -454,8 +500,6 @@ $mainRoundness: 0.2rem;
     width: 12rem;
     height: 2.6rem;
     margin: 2rem auto 0 auto;
-    display: flex;
-    align-items: center;
     user-select: none;
     
     p{

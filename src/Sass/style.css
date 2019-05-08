@@ -115,6 +115,28 @@
   color: grey;
 }
 
+@-webkit-keyframes pushFromTop {
+  0% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes pushFromTop {
+  0% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
 @media (min-width: 20px) and (max-width: 480px) {
   .App #welcomeBanner {
     display: none !important;
@@ -165,7 +187,15 @@
     display: none !important;
   }
   .mobileNavToggle {
-    display: block !important;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .mobileNavToggle * {
+    margin: 0 auto;
   }
   .downloadList {
     position: absolute;
@@ -176,6 +206,8 @@
     background-image: linear-gradient(lightblue, violet);
     z-index: 1;
     overflow: hidden;
+    -webkit-animation: pushFromTop 0.5s ease-in;
+            animation: pushFromTop 0.5s ease-in;
   }
   .downloadList .downloadListHeader {
     height: 7rem;
@@ -192,17 +224,20 @@
   }
   .downloadListToggle {
     background-color: rgba(180, 200, 200, 0.4) !important;
-    width: 4rem !important;
-    height: 4rem !important;
-    position: absolute;
+    position: fixed;
     z-index: 2;
     bottom: 1%;
     left: 1%;
+  }
+  .downloadListToggle i {
+    font-size: 2.4rem;
   }
   .mobileBack {
     display: -webkit-box !important;
     display: -ms-flexbox !important;
     display: flex !important;
+    width: 3rem !important;
+    height: 3rem !important;
   }
 }
 
@@ -492,14 +527,73 @@
 }
 
 .downloadListClose {
+  cursor: pointer;
   margin: 0 auto;
+  border-radius: 50%;
+  border: 1px solid grey;
   height: 3rem;
   width: 3rem;
-  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-animation: spin90 1.5s;
+          animation: spin90 1.5s;
 }
 
 .downloadListClose p {
-  margin: 0.2rem;
+  margin: 0.2rem auto;
+}
+
+.downloadListClose i {
+  margin: 0 auto;
+  font-size: 2.4rem;
+}
+
+@-webkit-keyframes spin90 {
+  0% {
+    opacity: 0;
+    -webkit-transform: rotateZ(270deg);
+            transform: rotateZ(270deg);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+}
+
+@keyframes spin90 {
+  0% {
+    opacity: 0;
+    -webkit-transform: rotateZ(270deg);
+            transform: rotateZ(270deg);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: rotateZ(0deg);
+            transform: rotateZ(0deg);
+  }
+}
+
+.spinLoad {
+  -webkit-animation: spin90 1.5s;
+          animation: spin90 1.5s;
+}
+
+.centerAll {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.centerAll * {
+  margin: 0 auto;
 }
 
 .downloadListToggle {
@@ -510,12 +604,6 @@
   width: 12rem;
   height: 2.6rem;
   margin: 2rem auto 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;

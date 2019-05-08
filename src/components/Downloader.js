@@ -143,7 +143,9 @@ export default class App extends Component {
           <p>{this.state.videoInfo?this.state.videoInfo.title:''}</p>
           <img alt='' src={this.state.videoInfo.thumbnail}></img>
         </header>
-        {!this.state.dlSelected&&<SearchBar search={this.state.videoLink} onChange={this.onChange} getVideoInfo={this.getVideoInfo}></SearchBar>}
+        {!this.state.dlSelected&&
+          <SearchBar search={this.state.videoLink} onChange={this.onChange} getVideoInfo={this.getVideoInfo}></SearchBar>
+        }
         {this.state.dlSelected&&
         <div>
         <NameSelect onChange={this.onChange} videoName={this.state.videoName}></NameSelect>
@@ -160,14 +162,16 @@ export default class App extends Component {
           <Switch>
           <Route exact path='/' render={()=><Link 
             to={`/downloadlist/${this.props.location.search}`}
-            className={'downloadListToggle undecoratedLink'}>
+            className={'downloadListToggle undecoratedLink centerAll'}>
             <p>ADVANCED</p>
             </Link>}
           />
           <Route exact path='/downloadlist' render={({history})=><BackButton 
             history={history} 
-            cssStyle={'downloadListToggle mobileBack'}>
-            <p>ADVANCED</p>
+            cssStyle={'downloadListToggle mobileBack spinLoad centerAll'}>
+            <i class="material-icons">
+              close
+            </i>
             </BackButton>}
           />
           </Switch>

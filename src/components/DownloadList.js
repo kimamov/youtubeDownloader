@@ -10,7 +10,9 @@ const DownloadList = (props) => {
             <BackButton
             history={props.history} 
             cssStyle={'downloadListClose'}>
-            <p></p>
+            <i class="material-icons">
+              close
+            </i>
             </BackButton>
             <h1>LIST OF FORMATS</h1>
             <p>SAVE AS FROM HERE</p>

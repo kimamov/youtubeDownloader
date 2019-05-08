@@ -23,14 +23,20 @@ export default class componentName extends Component {
             <Link className={'somePadding undecoratedLink'} to='/'>INFO</Link>
         </ul>
       </nav>
-      <Link to={'./nav'}><div 
-        className={`mobileNavToggle`}>
-      </div></Link>
+      <Link to={`/nav/${this.props.location.search}`}>
+        <div className={`mobileNavToggle undecoratedLink`}>
+          <i class="material-icons">
+            menu
+          </i>
+        </div>
+      </Link>
       <Route path='/nav' render={({history})=><nav className={'mobileNav'}>
         <BackButton
             history={history} 
-            cssStyle={'mobileNavToggle'}>
-            <p>CLOSE</p>
+            cssStyle={'mobileNavToggle spinLoad'}>
+            <i class="material-icons">
+            close
+            </i>
         </BackButton>
         <div id='mobileNavOuter'>
         <div id='mobileNavInner' className={`mobileNavToggle ${this.state.mobileNav?'mobileNavToggleOpen':''}`}>
