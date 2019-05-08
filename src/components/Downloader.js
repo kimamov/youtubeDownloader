@@ -23,6 +23,7 @@ export default class App extends Component {
     this.selectedOptions=''
     this.modes=['DOWNLOAD A VIDEO! :)','CLIENT SIDE DOWNLOAD','SERVER SIDE DOWNLOAD','LOW DATA MODE']
     
+    
     this.state = {
         videoLink: this.linkFromQuery(this.props.location.search) || '',
         videoInfo: [],
@@ -72,13 +73,17 @@ export default class App extends Component {
             dlSelected: true,
             quickType: '0',
             typeSelect: 0
+          },()=>{
+            this.props.history.push(`/video?video=${this.state.videoLink}`)
           })
       }
+      
       
     }).catch(error=>{
       console.log(error)
     })
   }
+
 
   dlVideoClient=(url)=>{
     axios({
@@ -113,13 +118,18 @@ export default class App extends Component {
     });
   }
   componentDidMount(){
- 
+    
   }
   stateFromQuery=()=>{
-    const videoQuery=this.props.location.search;
-    if(this.linkFromQuery(videoQuery)){
-        this.getVideoInfo()
-      }
+    console.log(this.props.location)
+    if(this.props.location.pathname==='/video'){
+      const videoQuery=this.props.location.search;
+      if(this.linkFromQuery(videoQuery)){
+          this.getVideoInfo()
+        }
+    }else{
+      this.props.history.push('/')
+    }
   }
   linkFromQuery=(query)=>{
     if(query){
@@ -134,6 +144,18 @@ export default class App extends Component {
     
     }
   }
+  resetState=()=>{
+    this.setState({
+      videoLink: this.linkFromQuery(this.props.location.search) || '',
+      videoInfo: [],
+      typeSelect: 0,
+      quickType: "0",
+      dlSelected: false,
+      mode: 0,
+      downloadListOpen: false,
+      videoName: ''
+  })
+  }
   render() {
     return (
       <div className={'downloadContainer'}>
@@ -143,11 +165,13 @@ export default class App extends Component {
           <p>{this.state.videoInfo?this.state.videoInfo.title:''}</p>
           <img alt='' src={this.state.videoInfo.thumbnail}></img>
         </header>
-        {!this.state.dlSelected&&
-          <SearchBar search={this.state.videoLink} onChange={this.onChange} getVideoInfo={this.getVideoInfo}></SearchBar>
-        }
-        {this.state.dlSelected&&
-        <div>
+        <Route exact path='/'
+          render={()=>
+            <SearchBar resetState={this.resetState} search={this.state.videoLink} onChange={this.onChange} getVideoInfo={this.getVideoInfo}/>
+          }
+        />
+        <Route path='/video' 
+        render={()=><div>
         <NameSelect onChange={this.onChange} videoName={this.state.videoName}></NameSelect>
         <FormatSelect 
           onChange={this.onChangeType}
@@ -157,32 +181,30 @@ export default class App extends Component {
           videoInfo={this.state.videoInfo}
           quickType={this.state.quickType}>
         </FormatSelect>
-        </div>}
-        {this.state.dlSelected&&
-          <Switch>
-          <Route exact path='/' render={()=><Link 
-            to={`/downloadlist/${this.props.location.search}`}
+        </div>}/>
+        <Route path='/video' 
+        render={()=><Switch>
+          <Route exact path='/video/' render={()=><Link 
+            to={`/video/downloadlist${this.props.location.search}`}
             className={'downloadListToggle undecoratedLink centerAll'}>
             <p>ADVANCED</p>
             </Link>}
           />
-          <Route exact path='/downloadlist' render={({history})=><BackButton 
+          <Route exact path='/video/downloadlist'  render={({history})=><BackButton 
             history={history} 
             cssStyle={'downloadListToggle mobileBack spinLoad centerAll'}>
             <i class="material-icons">
               close
             </i>
-            </BackButton>}
+          </BackButton>}
           />
           </Switch>
-        }
+        }/>
         </div>
-        
-        {this.state.dlSelected&&
-          <Route path='/downloadlist' 
+        <Route exact path='/video/downloadlist' 
           render={({history})=><DownloadList history={history} videoName={this.state.videoName} videoSelect={this.state.videoInfo}/>} 
-          />        
-        }
+        />        
+        
         <About></About>
       </div>
     )
