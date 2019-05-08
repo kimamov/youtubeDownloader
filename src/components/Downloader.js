@@ -7,7 +7,8 @@ import DownloadList from './DownloadList'
 import BackButton from './BackButton.js'
 import About from './About'
 import FormatSelect from './FormatSelect.js'
-const BASEURL='http://82.165.121.77:5000/'
+//const BASEURL='http://82.165.121.77:5000/'
+const BASEURL='http://localhost:5000/'
 
 export default class App extends Component {
   constructor(props) {
@@ -15,12 +16,13 @@ export default class App extends Component {
     this.dlOptions=["dl","audio"]
     this.dlMode=0;
     this.quickQueryOtions=[
-      '',
-      '&options=quality:highest',
-      '&options=filter:audioonly',
-      '&options=quality:lowestaudio'
+      {options:'',mime:'mp4'},
+      {options:'&options=quality:highest',mime:'&mime=mp4'},
+      {options:'&options=filter:audioonly',mime:'&mime=mp4'},
+      {options:'&options=quality:lowestaudio',mime:'&mime=webm'}
     ];
     this.selectedOptions=''
+    this.selectedMime=''
     this.modes=['DOWNLOAD A VIDEO! :)','CLIENT SIDE DOWNLOAD','SERVER SIDE DOWNLOAD','LOW DATA MODE']
     
     
@@ -46,20 +48,28 @@ export default class App extends Component {
     this.setState({[name]:event.target.value},
       ()=>{
         if(name==='quickType'){
-          this.selectedOptions=this.quickQueryOtions[this.state.quickType]
+          const selectedQuery=this.quickQueryOtions[this.state.quickType]
+          this.selectedOptions=selectedQuery.options
+          this.selectedMime=selectedQuery.mime
         }else if(name==='typeSelect'){
-          this.selectedOptions=`&options=quality:${this.state.videoInfo.formats[this.state.typeSelect].itag}`
+          const selectedQuery=this.state.videoInfo.formats[this.state.typeSelect]
+          this.selectedOptions=`&options=quality:${selectedQuery.itag}`
+          // get second part of formats.type audio/webm
+          const mimeParts=selectedQuery.type.split('/')
+          const mimeFromFormats=mimeParts[1]?`&mime=${mimeParts[1]}`:''
+          this.selectedMime=mimeFromFormats
         }
       })
   }
   getVideo=(event)=>{
     event.preventDefault()
     const optionsQuery=this.selectedOptions
+    const mimeQuery=this.selectedMime
     let videoNameOriginal=this.state.videoName
     // lovely node is racist and only wants ascii
     videoNameOriginal=videoNameOriginal.replace(/[^\x00-\x7F]/g, "") 
     const videoName=`&name=${videoNameOriginal}`
-    let dlWindow=window.open(`${BASEURL}${this.dlOptions[this.dlMode]}?videolink=${this.state.videoLink}${optionsQuery}${videoName}`)
+    let dlWindow=window.open(`${BASEURL}${this.dlOptions[this.dlMode]}?videolink=${this.state.videoLink}${optionsQuery}${videoName}${mimeQuery}`)
     setTimeout(()=>{window.close(dlWindow)},8000)
     
   }
@@ -144,6 +154,9 @@ export default class App extends Component {
     }
   }
   resetState=()=>{
+    this.selectedOptions=''
+    this.selectedMime=''
+    this.dlMode=0
     this.setState({
       videoLink: this.linkFromQuery(this.props.location.search) || '',
       videoInfo: [],
