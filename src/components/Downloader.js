@@ -55,7 +55,10 @@ export default class App extends Component {
   getVideo=(event)=>{
     event.preventDefault()
     const optionsQuery=this.selectedOptions
-    const videoName=`&name=${this.state.videoName}`
+    let videoNameOriginal=this.state.videoName
+    // lovely node is racist and only wants ascii
+    videoNameOriginal=videoNameOriginal.replace(/[^\x00-\x7F]/g, "") 
+    const videoName=`&name=${videoNameOriginal}`
     let dlWindow=window.open(`${BASEURL}${this.dlOptions[this.dlMode]}?videolink=${this.state.videoLink}${optionsQuery}${videoName}`)
     setTimeout(()=>{window.close(dlWindow)},8000)
     
