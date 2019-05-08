@@ -121,12 +121,8 @@ export default class App extends Component {
     
   }
   stateFromQuery=()=>{
-    console.log(this.props.location)
-    if(this.props.location.pathname==='/video'){
-      const videoQuery=this.props.location.search;
-      if(this.linkFromQuery(videoQuery)){
-          this.getVideoInfo()
-        }
+    if(this.props.location.pathname==='/video' && this.linkFromQuery(this.props.location.search)){
+      this.getVideoInfo()     
     }else{
       this.props.history.push('/')
     }
@@ -170,8 +166,7 @@ export default class App extends Component {
             <SearchBar resetState={this.resetState} search={this.state.videoLink} onChange={this.onChange} getVideoInfo={this.getVideoInfo}/>
           }
         />
-        <Route path='/video' 
-        render={()=><div>
+        {this.state.dlSelected&&<div>
         <NameSelect onChange={this.onChange} videoName={this.state.videoName}></NameSelect>
         <FormatSelect 
           onChange={this.onChangeType}
@@ -181,9 +176,10 @@ export default class App extends Component {
           videoInfo={this.state.videoInfo}
           quickType={this.state.quickType}>
         </FormatSelect>
-        </div>}/>
-        <Route path='/video' 
-        render={()=><Switch>
+        </div>}
+        
+        {this.state.dlSelected&&
+        <Switch>
           <Route exact path='/video/' render={()=><Link 
             to={`/video/downloadlist${this.props.location.search}`}
             className={'downloadListToggle undecoratedLink centerAll'}>
@@ -199,11 +195,11 @@ export default class App extends Component {
           </BackButton>}
           />
           </Switch>
-        }/>
+        }
         </div>
-        <Route exact path='/video/downloadlist' 
+        {this.state.dlSelected&&<Route exact path='/video/downloadlist' 
           render={({history})=><DownloadList history={history} videoName={this.state.videoName} videoSelect={this.state.videoInfo}/>} 
-        />        
+        />}        
         
         <About></About>
       </div>
