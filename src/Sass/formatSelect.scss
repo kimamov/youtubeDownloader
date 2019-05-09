@@ -1,0 +1,47 @@
+.typeSelect{
+    max-width: $inputWidth;
+    width: $mobileSpacing;
+    margin: 0 auto;
+    div{
+      margin: 0.4rem 0;
+    }
+    .radioButtons{
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 0.5rem;
+      font-size: 0.8rem;
+      input[type='radio']{
+          display: none;
+      }
+      label{
+          border-radius: $mainRoundness;
+          display: block;
+          background-color: $mainColor;
+          padding: 0.4rem 0 0.4rem 0;
+          border: 1px solid $transparant;
+      }
+      input[type="radio"]:checked+label{ 
+          border: 1px solid black;
+          background-color: $mainDark;
+      } 
+    }
+    select{
+      width: 100%;
+      max-width: 8rem;
+      background-color: white;
+      font-weight: bold;
+      margin: 0 auto;
+    }
+    .advancedType{
+      background-color: white;
+      max-width: 24rem;
+      border-radius: $mainRoundness;
+      margin: 1rem auto 1rem auto;
+      display: flex;
+      justify-content: space-around;
+      select{
+          border:none;
+          margin: 0;
+      }
+    }
+}

@@ -9,7 +9,7 @@ import About from './About'
 import FormatSelect from './FormatSelect.js'
 const BASEURL='http://82.165.121.77:5000/'
 
-export default class App extends Component {
+export default class ComponentName extends Component {
   constructor(props) {
     super(props)
     this.dlOptions=["dl","audio"]

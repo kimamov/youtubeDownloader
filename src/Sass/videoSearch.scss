@@ -1,0 +1,27 @@
+#videoSearchForm{
+    padding: 0 0 2rem 0;
+    display: block;
+    width: $mobileSpacing;
+    max-width: $inputWidth;
+    margin: 0 auto;
+
+    div{
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 70% 30%;
+        border-radius: 3rem;
+        border: 0.1rem solid white;
+        background-color: $mainColor;
+        overflow: hidden;
+    }
+    input{
+        border: none;
+        text-align: center;
+        width: 100%;
+        margin: 0 auto;
+        background-color: $transparant;
+      }
+    input[type='submit']{
+        background-color: lightcoral;
+    }
+  }

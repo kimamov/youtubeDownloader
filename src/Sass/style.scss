@@ -8,6 +8,11 @@ $mobileSpacing: 100%;
 $navHeight: 3rem;
 $inputWidth: 40rem;
 $mainRoundness: 2rem;
+@import './downloadList.scss';
+@import './videoSearch.scss';
+@import './nameSelect.scss';
+@import './navigation.scss';
+@import './formatSelect.scss';
 
 
 
@@ -28,7 +33,13 @@ $mainRoundness: 2rem;
     }
   }
 
-
+  .downloadContainer{
+    /* background-color: $bgColor; */
+    /* height: calc(100% - 3rem); */
+    height: 100%;
+    overflow: auto;
+    //display: flex;
+   }
   #dlComponent{
     text-align: center;
     max-width: 40rem;
@@ -39,38 +50,19 @@ $mainRoundness: 2rem;
     
   }
   
-  .App-link {
-    color: #61dafb;
-  }
+
   .slideInFromTop{
     transform-origin: top;
     animation: slideInDiv 1s;
   }
-  #videoSearchForm{
-    padding: 0 0 2rem 0;
-    display: block;
-    width: $mobileSpacing;
-    max-width: $inputWidth;
-    margin: 0 auto;
-
-    div{
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 70% 30%;
-        border-radius: 3rem;
-        border: 0.1rem solid white;
-        background-color: $mainColor;
-        overflow: hidden;
-    }
-    input{
-        border: none;
-        text-align: center;
-        width: 100%;
-        margin: 0 auto;
-        background-color: $transparant;
-      }
-    input[type='submit']{
-        background-color: lightcoral;
+  .spinLoad{
+    animation: spin90 1.5s;
+  }
+  .centerAll{
+    display: flex;
+    align-items: center;
+    *{
+      margin: 0 auto;
     }
   }
 
@@ -89,39 +81,7 @@ $mainRoundness: 2rem;
     color: white;
     background-color: black !important;
   }
-  .nameSelect{
-    width: 100%;
-    max-width: $inputWidth;
-    margin: 0 auto;
-    background-color: white;
-    border-radius: $mainRoundness;
-    overflow: hidden;
-    input{
-      width: 94%;
-      margin: 0 auto;
-      border: none;
-      font-size: 1.2rem;
-      text-align: center;
-    }
-    input:focus{
-      outline: none;
-    }
-    p{
-      margin: 0;
-      font-size: 0.8rem;
-      font-weight: lighter;
-      color: grey;
-    }
-  }
 
-  @keyframes pushFromTop{
-    0%{
-      transform: translateY(100%);
-    }
-    100%{
-      transform: translateY(0);
-    }
-  }
   @media (min-width: 20px) and (max-width: 480px) {
     .App {
       #welcomeBanner{
@@ -222,27 +182,6 @@ $mainRoundness: 2rem;
   }
   
   
-
-  
-/*   .mobileNav{
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 100vw;
-    background-color: orange;
-    display: grid;
-    ul{
-     padding: 0;
-     align-self: center;
-     display: grid;
-     a{
-      margin: 3.4rem 0;
-      color: red;
-     }
-    }
-  } */
   .mobileNavToggle{
     display: none;
     width: 3rem;
@@ -256,6 +195,20 @@ $mainRoundness: 2rem;
 
   }
   
+  .undecoratedLink{
+    text-decoration:none;
+    color: black;
+    
+  }
+  
+  @keyframes pushFromTop{
+    0%{
+      transform: translateY(100%);
+    }
+    100%{
+      transform: translateY(0);
+    }
+  }
   @keyframes openNav{
     0%{
       height: 0;
@@ -266,155 +219,7 @@ $mainRoundness: 2rem;
       width: 200%;      
     }
   }
-  /* .mobileNavToggleOpen{
-    height: 200% !important;
-    width: 200% !important;
-  } */
-
   
-  /* MOBILE NAV ANIMATION DIV SOUP */
-  .mobileNav{
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    //animation: openNav 2s forwards;
-    #mobileNavOuter{
-      position: relative;
-      right: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      transform: translate(0, 0);
-      overflow: hidden;
-      #mobileNavInner{
-        height: 0%;
-        width: 0%;
-        position: absolute;
-        background-color: $secondaryLight;
-        border-radius: 50%;
-        top: -50%;
-        right: -50%;
-        overflow: hidden;
-        //transition: 1s;
-        animation: openNav 1s forwards
-      }
-      #innerContainer{
-        position: absolute;
-        width: 100vw;
-        /* height: 100vh; */
-        height: 50%;
-        top: 50vh;
-        right: 50vw;
-        display: grid;
-        ul{
-          align-self: center;
-          display: grid;
-          padding: 0;
-          a{
-            padding: 1rem 0;
-            margin: 3rem 0;
-            color: white;
-            font-size: 1.6rem;
-            font-weight: bold;
-           }
-        }
-        
-    }
-    
-    }
-  }
-  
-  .topNav{
-    z-index: 1;
-    top: 0;
-    height: $navHeight;
-    display: grid;
-    width: 100%;
-    padding: 0;
-    /* border-bottom: 0.1rem solid rgba(200,200,200,0.6); */
-    ul{
-      align-self: center;
-      a{
-        margin: 0 4rem;
-      }
-    }
-  }
-
-  .navList{
-    margin: 0 auto;
-    display: flex;
-    /* max-width: 50rem; */
-    max-width: $maxWidth;
-    /* justify-content: space-between; */
-    padding: 0 !important;
-  }
-  
-  .navList>.somePadding{
-    list-style: none;
-    cursor: pointer;
-  }
-
-  .navList>.somePadding:hover{
-    background-color: rgba(200,200,200,0.4)
-  }
-  
-  
-  .undecoratedLink{
-    text-decoration:none;
-    color: black;
-    
-  }
-
-  .typeSelect{
-      max-width: $inputWidth;
-      width: $mobileSpacing;
-      margin: 0 auto;
-      div{
-        margin: 0.4rem 0;
-      }
-      .radioButtons{
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 0.5rem;
-        font-size: 0.8rem;
-        input[type='radio']{
-            display: none;
-        }
-        label{
-            border-radius: $mainRoundness;
-            display: block;
-            background-color: $mainColor;
-            padding: 0.4rem 0 0.4rem 0;
-            border: 1px solid $transparant;
-        }
-        input[type="radio"]:checked+label{ 
-            border: 1px solid black;
-            background-color: $mainDark;
-        } 
-      }
-      select{
-        width: 100%;
-        max-width: 8rem;
-        background-color: white;
-        font-weight: bold;
-        margin: 0 auto;
-      }
-      .advancedType{
-        background-color: white;
-        max-width: 24rem;
-        border-radius: $mainRoundness;
-        margin: 1rem auto 1rem auto;
-        display: flex;
-        justify-content: space-around;
-        select{
-            border:none;
-            margin: 0;
-        }
-      }
-  }
   @keyframes slideInDiv{
     0%{
       transform: scale(0.1);
@@ -423,55 +228,8 @@ $mainRoundness: 2rem;
       transform: scale(1)
     }
   }
-  .downloadContainer{
-   /* background-color: $bgColor; */
-   /* height: calc(100% - 3rem); */
-   height: 100%;
-   overflow: auto;
-   //display: flex;
-  }
-  .downloadList{
-    max-width: 40rem;
-    margin: 0 auto;
-    .downloadListHeader{
-      border-radius: $mainRoundness;
-      border: 1px solid black;
-      margin: 0 1rem;
-    }
-  }
-  .listContainer{
-    overflow: auto;
-    width: 100%;
-    div{
-      display: grid;
-      padding: 0.5rem 0;
-      grid-template-columns: 1fr 1fr 1fr;
-      p,a{
-        align-self: center;
-        margin: 0;
-      }
-    }
-  }
 
 
-  .downloadListClose{
-    cursor: pointer;
-    margin: 0 auto;
-    border-radius: 50%;
-    border: 1px solid grey;
-    height: 3rem;
-    width: 3rem;
-    display: flex;
-    align-items: center;
-    animation: spin90 1.5s;
-    p{
-      margin: 0.2rem auto;
-    }
-    i{
-      margin: 0 auto;
-      font-size: 2.4rem;
-    }
-  }
   @keyframes spin90{
     0%{
       opacity: 0;
@@ -482,41 +240,9 @@ $mainRoundness: 2rem;
       transform: rotateZ(0deg);
     }
   }
-  .spinLoad{
-    animation: spin90 1.5s;
-  }
-  .centerAll{
-    display: flex;
-    align-items: center;
-    *{
-      margin: 0 auto;
-    }
-  }
-  .downloadListToggle{
-    //border-radius: 50%;
-    border-radius: $mainRoundness;
-    font-weight: bold;
-    border: 1px solid grey;
-    background-color: white;
-    width: 12rem;
-    height: 2.6rem;
-    margin: 2rem auto 0 auto;
-    user-select: none;
-    
-    p{
-      margin: 0 auto;
-    }
-  }
-  .mobileBack{
-    display: none;
-  }
 
-  .fullSizeBg{
-    background-image: url("../media/world.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-  }
+
+
 
   #welcomeBanner{
     /* background-color: lightgrey; */

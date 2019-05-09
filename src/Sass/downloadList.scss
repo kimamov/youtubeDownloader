@@ -1,0 +1,57 @@
+.downloadList{
+    max-width: 40rem;
+    margin: 0 auto;
+    .downloadListHeader{
+      border-radius: $mainRoundness;
+      border: 1px solid black;
+      margin: 0 1rem;
+    }
+  }
+  .listContainer{
+    overflow: auto;
+    width: 100%;
+    div{
+      display: grid;
+      padding: 0.5rem 0;
+      grid-template-columns: 1fr 1fr 1fr;
+      p,a{
+        align-self: center;
+        margin: 0;
+      }
+    }
+  }
+
+
+  .downloadListClose{
+    cursor: pointer;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 1px solid grey;
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    animation: spin90 1.5s;
+    p{
+      margin: 0.2rem auto;
+    }
+    i{
+      margin: 0 auto;
+      font-size: 2.4rem;
+    }
+  }
+  .downloadListToggle{
+    //border-radius: 50%;
+    border-radius: $mainRoundness;
+    font-weight: bold;
+    border: 1px solid grey;
+    background-color: white;
+    width: 12rem;
+    height: 2.6rem;
+    margin: 2rem auto 0 auto;
+    user-select: none;
+    
+    p{
+      margin: 0 auto;
+    }
+  }
