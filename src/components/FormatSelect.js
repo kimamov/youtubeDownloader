@@ -1,6 +1,7 @@
 import React from 'react'
 
 const FormatSelect = (props) => {
+  console.log(props)
   return (
     <form onSubmit={props.onSubmit} className={'typeSelect slideInFromTop'}>
         <div>SELECT A FORMAT</div>
@@ -20,7 +21,9 @@ const FormatSelect = (props) => {
                 )}
             </select>
         </div>
-        <input className='roundedButton' value='DOWNLOAD' type="submit"></input>
+        <a className={'undecoratedLink'} target='blank' href={props.videoURL} download>
+          <div className={'roundedButton centerAll'} value='DOWNLOAD' type="submit">DOWNLOAD</div>
+        </a>
     </form>
   )
 }

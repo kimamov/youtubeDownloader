@@ -31,32 +31,33 @@ export default class ComponentName extends Component {
         dlSelected: false,
         mode: 0,
         downloadListOpen: false,
-        videoName: ''
+        videoName: '',
+        videoURL: ''
     }
     this.stateFromQuery()
 
   }
   onChange=(event)=>{
     const name=event.target.name
-    this.setState({[name]:event.target.value})
+    const videoURLUpdate=this.getVideoURL();
+    this.setState({[name]:event.target.value, videoURL: videoURLUpdate})
   }
   onChangeType=(event)=>{
     const name=event.target.name
-    this.setState({[name]:event.target.value},
-      ()=>{
-        if(name==='quickType'){
-          const selectedQuery=this.quickQueryOtions[this.state.quickType]
-          this.selectedOptions=selectedQuery.options
-          this.selectedMime=selectedQuery.mime
-        }else if(name==='typeSelect'){
-          const selectedQuery=this.state.videoInfo.formats[this.state.typeSelect]
-          this.selectedOptions=`&options=quality:${selectedQuery.itag}`
-          // get second part of formats.type audio/webm
-          const mimeParts=selectedQuery.type.split('/')
-          const mimeFromFormats=mimeParts[1]?`&mime=${mimeParts[1]}`:''
-          this.selectedMime=mimeFromFormats
-        }
-      })
+    if(name==='quickType'){
+      const selectedQuery=this.quickQueryOtions[event.target.value]
+      this.selectedOptions=selectedQuery.options
+      this.selectedMime=selectedQuery.mime
+    }else if(name==='typeSelect'){
+      const selectedQuery=this.state.videoInfo.formats[event.target.value]
+      this.selectedOptions=`&options=quality:${selectedQuery.itag}`
+      // get second part of formats.type audio/webm
+      const mimeParts=selectedQuery.type.split('/')
+      const mimeFromFormats=mimeParts[1]?`&mime=${mimeParts[1]}`:''
+      this.selectedMime=mimeFromFormats
+    }
+    const videoURLUpdate=this.getVideoURL();
+    this.setState({[name]:event.target.value,videoURL: videoURLUpdate})
   }
   getVideo=(event)=>{
     event.preventDefault()
@@ -73,6 +74,19 @@ export default class ComponentName extends Component {
     setTimeout(()=>{window.close(dlWindow)},8000)
     
   }
+  getVideoURL=()=>{
+    const optionsQuery=this.selectedOptions
+    const mimeQuery=this.selectedMime
+    let videoNameOriginal=this.state.videoName
+    // lovely node is racist and only wants ascii
+    videoNameOriginal=videoNameOriginal.replace(/[^\x00-\x7F]/g, "") 
+    const videoName=`&name=${videoNameOriginal}`
+    //if mime is mp3 call the dlmp3 route to convert video before sending
+    const dlMode=mimeQuery==='&mime=mp3'?'dlmp3':'dl';
+
+    const videoURL=`${BASEURL}${dlMode}?videolink=${this.state.videoLink}${optionsQuery}${videoName}${mimeQuery}`
+    return videoURL
+  }
   getVideoInfo=(event)=>{
     if(event){
       event.preventDefault()
@@ -85,7 +99,8 @@ export default class ComponentName extends Component {
             videoName:res.data.title,
             dlSelected: true,
             quickType: '0',
-            typeSelect: 0
+            typeSelect: 0,
+            videoURL: `${BASEURL}dl?videolink=${this.state.videoLink}${res.data.title.replace(/[^\x00-\x7F]/g, "")}`
           },()=>{
             this.props.history.push(`/video?video=${this.state.videoLink}`)
           })
@@ -98,7 +113,7 @@ export default class ComponentName extends Component {
   }
 
 
-  dlVideoClient=(url)=>{
+  /* dlVideoClient=(url)=>{
     axios({
       url: url,
       method: 'GET',
@@ -129,7 +144,7 @@ export default class ComponentName extends Component {
        document.body.removeChild(link);
        URL.revokeObjectURL(url)
     });
-  }
+  } */
   componentDidMount(){
     
   }
@@ -164,10 +179,13 @@ export default class ComponentName extends Component {
       dlSelected: false,
       mode: 0,
       downloadListOpen: false,
-      videoName: ''
+      videoName: '',
+      videoURL: ''
   })
   }
   render() {
+    console.log(this.getVideoURL())
+    console.log(this.state)
     return (
       <div className={'downloadContainer'}>
         <div id='dlComponent'>
@@ -186,7 +204,8 @@ export default class ComponentName extends Component {
         <FormatSelect 
           onChange={this.onChangeType}
           //onSubmit={(event,url)=>this.dlVideo(event,"http://localhost:5000/dl?videolink=https://www.youtube.com/watch?v=GSLPOmQV9_w"/* this.state.videoInfo.formats[this.state.typeSelect].url */)}
-          onSubmit={this.getVideo}  
+          onSubmit={this.getVideo}
+          videoURL={this.state.videoURL}  
           typeSelect={this.state.typeSelect} 
           videoInfo={this.state.videoInfo}
           quickType={this.state.quickType}>

@@ -62,7 +62,9 @@ $mainRoundness: 2rem;
   }
   .centerAll{
     display: flex;
-    align-items: center;
+    justify-content: center;
+    align-items: center;        
+    align-content: center;   ;
     *{
       margin: 0 auto;
     }
@@ -100,7 +102,7 @@ $mainRoundness: 2rem;
       }
       #dlComponent{
         align-self: center;
-        padding: 0rem 1rem 2rem 1rem;
+        padding: 2rem 1rem 2rem 1rem;
         border-radius: 0;
         width: 100%;
         background-color: transparent;
