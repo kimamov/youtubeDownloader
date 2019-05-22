@@ -180,10 +180,10 @@ class App extends Component {
           <main>
             <Switch>
               {/* <Route component={RouteUndef}/> */}
-              <Route exact path='/'
+              {/* <Route exact path='/'
                 render={()=>
                 <SearchBar resetState={this.resetState} search={this.state.videoLink} onChange={this.onChange} getVideoInfo={this.getVideoInfo}/>
-              }/>
+              }/> */}
             </Switch>
             {/* <WelcomeBanner></WelcomeBanner> */}
             <Route path='/' component={Downloader}/>

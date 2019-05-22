@@ -11,7 +11,7 @@ export default class componentName extends Component {
       }
     }
   componentDidMount(){
-    console.log(window.location.pathname)
+    //console.log(window.location.pathname)
   }
   render() {
     return (

@@ -462,10 +462,11 @@
   }
   .downloadListToggle {
     background-color: rgba(180, 200, 200, 0.4) !important;
-    position: fixed;
+    position: absolute;
     z-index: 2;
-    bottom: 1%;
+    top: calc(100% - 4rem);
     left: 1%;
+    margin: 0 auto;
   }
   .downloadListToggle i {
     font-size: 2.4rem;

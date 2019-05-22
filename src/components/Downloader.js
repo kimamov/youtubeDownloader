@@ -12,13 +12,11 @@ const BASEURL='http://82.165.121.77:5000/'
 export default class ComponentName extends Component {
   constructor(props) {
     super(props)
-    this.dlOptions=["dl","audio"]
-    this.dlMode=0;
     this.quickQueryOtions=[
       {options:'',mime:'&mime=mp4'},
       {options:'&options=quality:highest',mime:'&mime=mp4'},
-      {options:'&options=filter:audioonly',mime:'&mime=mp4'},
-      {options:'&options=quality:lowestaudio',mime:'&mime=webm'}
+      {options:'&options=filter:audioonly',mime:'&mime=mp3'},
+      {options:'&options=quality:lowestaudio',mime:'&mime=mp3'}
     ];
     this.selectedOptions=''
     this.selectedMime=''
@@ -68,7 +66,10 @@ export default class ComponentName extends Component {
     // lovely node is racist and only wants ascii
     videoNameOriginal=videoNameOriginal.replace(/[^\x00-\x7F]/g, "") 
     const videoName=`&name=${videoNameOriginal}`
-    let dlWindow=window.open(`${BASEURL}${this.dlOptions[this.dlMode]}?videolink=${this.state.videoLink}${optionsQuery}${videoName}${mimeQuery}`)
+    //if mime is mp3 call the dlmp3 route to convert video before sending
+    const dlMode=mimeQuery==='&mime=mp3'?'dlmp3':'dl';
+
+    let dlWindow=window.open(`${BASEURL}${dlMode}?videolink=${this.state.videoLink}${optionsQuery}${videoName}${mimeQuery}`)
     setTimeout(()=>{window.close(dlWindow)},8000)
     
   }
@@ -77,7 +78,7 @@ export default class ComponentName extends Component {
       event.preventDefault()
     }
     axios.get(`${BASEURL}simpleinfo?videolink=${this.state.videoLink}`).then(res=>{
-      console.log(res)
+      //console.log(res)
       if(res.data.formats){
         this.setState(
           {videoInfo: res.data,
@@ -155,7 +156,6 @@ export default class ComponentName extends Component {
   resetState=()=>{
     this.selectedOptions=''
     this.selectedMime=''
-    this.dlMode=0
     this.setState({
       videoLink: this.linkFromQuery(this.props.location.search) || '',
       videoInfo: [],
