@@ -32,7 +32,9 @@ $mainRoundness: 2rem;
         
     }
   }
-
+  .mobileBack{
+    display: none !important;
+  }
   .downloadContainer{
     /* background-color: $bgColor; */
     /* height: calc(100% - 3rem); */
@@ -168,14 +170,20 @@ $mainRoundness: 2rem;
       background-color: rgba(180,200,200,0.4) !important;
       position: absolute;
       z-index: 2;
-      //bottom: 1%;
-      top: calc(100% - 4rem);
+      bottom: 2%;
       left: 1%;
       margin: 0 auto;
       i{
         font-size: 2.4rem;
       }
     }
+    // fixing nav jumping into name field on my phone... different on other phones
+    .mobileAdvanced{
+      position: relative;
+      margin: 0;
+      transform: translateY(3.5rem)
+    }
+
     .mobileBack{
       display: flex !important;
       width: 3rem !important;

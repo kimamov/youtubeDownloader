@@ -197,7 +197,7 @@ export default class ComponentName extends Component {
         <Switch>
           <Route exact path='/video/' render={()=><Link 
             to={`/video/downloadlist${this.props.location.search}`}
-            className={'downloadListToggle undecoratedLink centerAll'}>
+            className={'downloadListToggle undecoratedLink centerAll mobileAdvanced'}>
             <p>ADVANCED</p>
             </Link>}
           />
