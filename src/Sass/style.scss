@@ -1,7 +1,7 @@
 $mainColor: white;
 $transparant: rgba(0,0,0,0);
 $bgColor: lightblue;
-$mainDark: lightgrey;
+$mainDark: rgba(240, 128, 128, 0.959);
 $secondaryLight: rgb(216, 136, 226);
 $maxWidth: 82rem;
 $mobileSpacing: 100%;
@@ -13,6 +13,7 @@ $mainRoundness: 2rem;
 @import './nameSelect.scss';
 @import './navigation.scss';
 @import './formatSelect.scss';
+@import './about.scss';
 
 
 
@@ -38,7 +39,7 @@ $mainRoundness: 2rem;
   .downloadContainer{
     /* background-color: $bgColor; */
     /* height: calc(100% - 3rem); */
-    height: 100%;
+    //height: 100%;
     overflow: auto;
     //display: flex;
    }
@@ -86,8 +87,29 @@ $mainRoundness: 2rem;
     background-color: black !important;
   }
 
+  
+  .aboutComp{
+    max-width: $maxWidth;
+    margin: 12rem auto;
+    font-size: 1.2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    .quickInfo{
+      grid-column: 1/3;
+    }
+    section{
+      border-radius: 2rem;
+      border: 1px solid black;
+    }
+}
+
+ .mobileAboutComp{
+    display: none;      
+}
   @media (min-width: 20px) and (max-width: 480px) {
     .App {
+      overflow: hidden !important;
       #welcomeBanner{
         display: none !important;
       }
@@ -183,13 +205,31 @@ $mainRoundness: 2rem;
     .mobileAdvanced{
       position: relative;
       margin: 0;
-      transform: translateY(3.5rem)
+      transform: translateY(2.5rem)
     }
 
     .mobileBack{
       display: flex !important;
       width: 3rem !important;
       height: 3rem !important;
+    }
+
+    .aboutComp{
+      display: none !important;
+    }
+    .mobileAboutComp{
+      display: block;
+      position: absolute;
+      top: 0;
+      height: 100%;
+      overflow: auto;
+      display: flex;
+      flex-wrap: wrap;
+      background-image: linear-gradient(lightblue, violet);
+      section{
+        width: 90%;
+        margin: 0 auto;
+      }
     }
   }
   

@@ -108,7 +108,7 @@ export default class ComponentName extends Component {
       
       
     }).catch(error=>{
-      console.log(error)
+      //console.log(error)
     })
   }
 
@@ -145,9 +145,7 @@ export default class ComponentName extends Component {
        URL.revokeObjectURL(url)
     });
   } */
-  componentDidMount(){
-    
-  }
+
   stateFromQuery=()=>{
     if(this.props.location.pathname==='/video' && this.linkFromQuery(this.props.location.search)){
       this.getVideoInfo()     
@@ -184,8 +182,6 @@ export default class ComponentName extends Component {
   })
   }
   render() {
-    console.log(this.getVideoURL())
-    console.log(this.state)
     return (
       <div className={'downloadContainer'}>
         <div id='dlComponent'>
@@ -234,8 +230,6 @@ export default class ComponentName extends Component {
         {this.state.dlSelected&&<Route exact path='/video/downloadlist' 
           render={({history})=><DownloadList history={history} videoName={this.state.videoName} videoSelect={this.state.videoInfo}/>} 
         />}        
-        
-        <About></About>
       </div>
     )
   }

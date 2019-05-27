@@ -1,12 +1,12 @@
 import React from 'react'
 
-const About = ({mobileMode}) => {
-  return (
-    <div className={'aboutComp'}>
+const MobileAbout = () => {
+    return (
+        <div className={'mobileAboutComp'}>
         <section className='quickInfo'>
           <h1>SOME QUICK INFO</h1>
             <p>
-              you can avoid getting bottlenecked by my shitty ALDI server if you click on advanced and save the prefered format directly.
+              you can avoid getting bottlenecked by my shitty ALDI server if you click on advanced and save the preferred format directly.
             </p>
             <p>
               picking the format "BEST AUDIO" or "SMALLEST AUDIO" will convert the video to mp3 before sending it to you.<br/>
@@ -16,7 +16,7 @@ const About = ({mobileMode}) => {
         <section>
           <h1>CONTACT</h1>
             <p>
-              feel free to contact me at <a href="mailto:baizonpc@gmail.com">baizonpc@gmail.com</a> if you find a bug or have any suggestions!
+              feel free to contact me on <a href="mailto:baizonpc@gmail.com">baizonpc@gmail.com</a> if you find a bug or have any suggestions!
             </p>
         </section>
         <section>
@@ -33,8 +33,7 @@ const About = ({mobileMode}) => {
         </section>
       
     </div>
-  )
+    )
 }
 
-export default About
-
+export default MobileAbout

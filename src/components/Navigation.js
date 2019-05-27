@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Link, Route} from 'react-router-dom'
 import BackButton from './BackButton.js'
+import About from './About'
 
 
 export default class componentName extends Component {
@@ -10,19 +11,17 @@ export default class componentName extends Component {
          mobileNav: false
       }
     }
-  componentDidMount(){
-    //console.log(window.location.pathname)
-  }
+
   render() {
     return (
       <div className='navComp'>
-      <nav className={'topNav'}>
+      {/* <nav className={'topNav'}>
         <ul className={'navList'}>
             <Link className={'somePadding undecoratedLink'} to='/'>ME </Link>
             <Link className={'somePadding undecoratedLink'} to='/'>GAMES</Link>
             <Link className={'somePadding undecoratedLink'} to='/'>INFO</Link>
         </ul>
-      </nav>
+      </nav> */}
       <Link to={`/video/nav/${this.props.location.search}`}>
         <div className={`mobileNavToggle undecoratedLink`}>
           <i class="material-icons">
@@ -40,13 +39,12 @@ export default class componentName extends Component {
         </BackButton>
         <div id='mobileNavOuter'>
         <div id='mobileNavInner' className={`mobileNavToggle ${this.state.mobileNav?'mobileNavToggleOpen':''}`}>
-          <div id='innerContainer'>
+          {<div id='innerContainer'>         
           <ul>
-            <Link className={'somePadding undecoratedLink'} to='/'>OPTIONS</Link>
-            <Link className={'somePadding undecoratedLink'} to='/'>HOW TO USE</Link>
-            <Link className={'somePadding undecoratedLink'} to='/'>SCHEKEL</Link>
+            <Link className={'somePadding undecoratedLink'} to='/'>HOME</Link>
+            <Link className={'somePadding undecoratedLink'} to='/about'>INFO</Link>
           </ul>
-          </div>
+          </div>}
         </div>
         </div>
       </nav>}/>
