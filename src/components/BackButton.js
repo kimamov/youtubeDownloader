@@ -1,10 +1,10 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
 
-const BackButton = (props) => {
+const BackButton = ({history,cssStyle,children}) => {
   return (
-    <div onClick={props.history.goBack} className={props.cssStyle}>
-      {props.children}
+    <div onClick={history.goBack} className={cssStyle}>
+      {children}
     </div>
   )
 }
