@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {Link, Route} from 'react-router-dom'
 import BackButton from './BackButton.js'
-import About from './About'
 
 
 export default class componentName extends Component {

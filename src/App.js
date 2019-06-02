@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import './Sass/style.css';
-import RouteUndef from './components/RouteUndef.js'
 import Downloader from './components/Downloader.js'
 import About from './components/About.js'
 import MobileAbout from './components/MobileAbout.js'
 import Navigation from './components/Navigation.js'
 import { withRouter } from 'react-router-dom'
-import axios from 'axios'
 
 
-const BASEURL='http://82.165.121.77:5000/'
 
 
 class App extends Component {

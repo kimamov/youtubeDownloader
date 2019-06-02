@@ -1,5 +1,6 @@
 import React from 'react'
 import BackButton from './BackButton.js'
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
 
 
@@ -28,6 +29,11 @@ const DownloadList = ({history, videoName, videoSelect}) => {
         </div>    
     </div>
   )
+}
+
+DownloadList.propTypes = {
+  videoName: PropTypes.string,
+  videoSelect: PropTypes.array
 }
 
 export default DownloadList

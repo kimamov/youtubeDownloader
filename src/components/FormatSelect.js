@@ -1,6 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types';
+
 
 const FormatSelect = ({onSubmit,onChange,quickType,typeSelect,videoInfo,videoURL}) => {
+  console.log(typeSelect)
   return (
     <form onSubmit={onSubmit} className={'typeSelect slideInFromTop'}>
         <div>SELECT A FORMAT</div>
@@ -26,5 +29,17 @@ const FormatSelect = ({onSubmit,onChange,quickType,typeSelect,videoInfo,videoURL
     </form>
   )
 }
+FormatSelect.propTypes = {
+  quickType: PropTypes.string,
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
+  typeSelect: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  videoInfo: PropTypes.array,
+  videoURL: PropTypes.string
+}
+
 
 export default FormatSelect
