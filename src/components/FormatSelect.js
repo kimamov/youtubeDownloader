@@ -16,7 +16,7 @@ const FormatSelect = ({onSubmit,onChange,quickType,typeSelect,videoInfo,videoURL
             <label htmlFor='quickTypeSelect3'>SMALLEST AUDIO</label>
         </div>       
         <div className={'advancedType'}>
-            <div>ADVANCED FORMATS</div>
+            <div className='advancedTypeP'>ADVANCED FORMATS</div>
             <select name='typeSelect' onChange={onChange} value={typeSelect}>
                 {(typeof videoInfo.formats =="object")&&videoInfo.formats.map((item,index)=>
                 <option value={index}>{'type: '+item.type +' quality: '+ item.quality+ ' '+(item.videoOnly?'only video':'')}</option>

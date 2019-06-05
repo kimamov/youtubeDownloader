@@ -152,6 +152,11 @@ $mainRoundness: 2rem;
         }
         
       }
+      .startScreenMobile{
+        align-self: unset !important;
+        padding-top: 6rem !important;
+
+      }
       .radioButtons{
         font-size: 0.6rem !important;  
       }
@@ -319,4 +324,9 @@ $mainRoundness: 2rem;
       }
     }
     
+  }
+
+  .logo{
+    margin: 0 auto;
+    width: 8rem;
   }

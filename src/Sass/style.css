@@ -300,6 +300,10 @@
   margin: 0;
 }
 
+.typeSelect .advancedType .advancedTypeP {
+  margin: 0.4rem !important;
+}
+
 .App {
   text-align: center;
   background-image: -webkit-gradient(linear, left top, left bottom, from(lightblue), to(violet));
@@ -454,6 +458,12 @@
     border: 1px solid grey;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
+  }
+  .App .startScreenMobile {
+    -ms-flex-item-align: unset !important;
+        -ms-grid-row-align: unset !important;
+        align-self: unset !important;
+    padding-top: 6rem !important;
   }
   .App .radioButtons {
     font-size: 0.6rem !important;
@@ -683,5 +693,10 @@
 
 #welcomeBanner div button {
   margin-top: 2rem !important;
+}
+
+.logo {
+  margin: 0 auto;
+  width: 8rem;
 }
 /*# sourceMappingURL=style.css.map */

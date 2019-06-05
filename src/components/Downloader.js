@@ -5,8 +5,8 @@ import SearchBar from './SearchBar.js'
 import NameSelect from './NameSelect.js'
 import DownloadList from './DownloadList'
 import BackButton from './BackButton.js'
-import About from './About'
 import FormatSelect from './FormatSelect.js'
+import Logo from './raccoon.svg';
 const BASEURL='http://82.165.121.77:5000/'
 
 export default class ComponentName extends Component {
@@ -20,7 +20,7 @@ export default class ComponentName extends Component {
     ];
     this.selectedOptions=''
     this.selectedMime=''
-    this.modes=['DOWNLOAD A VIDEO! :)','CLIENT SIDE DOWNLOAD','SERVER SIDE DOWNLOAD','LOW DATA MODE']
+    this.modes=['YOUTUBE COON','CLIENT SIDE DOWNLOAD','SERVER SIDE DOWNLOAD','LOW DATA MODE']
     
     
     this.state = {
@@ -112,40 +112,6 @@ export default class ComponentName extends Component {
     })
   }
 
-
-  /* dlVideoClient=(url)=>{
-    axios({
-      url: url,
-      method: 'GET',
-      responseType: 'blob', 
-    }).then((response) => {
-       const url = window.URL.createObjectURL(new Blob([response.data]));
-       const link = document.createElement('a');
-       link.href = url;
-       link.setAttribute('download', 'file.mp4'); 
-       document.body.appendChild(link);
-       link.click();
-       document.body.removeChild(link);
-    });
-  }
-  dlVideo=(event,url)=>{
-    event.preventDefault()
-    axios({
-      url: url,
-      method: 'GET',
-      responseType: 'blob', 
-    }).then((response) => {
-       const url = window.URL.createObjectURL(new Blob([response.data]));
-       const link = document.createElement('a');
-       link.href = url;
-       link.setAttribute('download', 'file.mp4'); 
-       document.body.appendChild(link);
-       link.click();
-       document.body.removeChild(link);
-       URL.revokeObjectURL(url)
-    });
-  } */
-
   stateFromQuery=()=>{
     if(this.props.location.pathname==='/video' && this.linkFromQuery(this.props.location.search)){
       this.getVideoInfo()     
@@ -184,8 +150,10 @@ export default class ComponentName extends Component {
   render() {
     return (
       <div className={'downloadContainer'}>
-        <div id='dlComponent'>
-        <h1>{this.modes[this.state.mode]}</h1>
+        <div id='dlComponent' className={this.state.videoInfo.length?"":"startScreenMobile"}>
+        {!this.state.videoInfo.length&&
+        [<img className={'logo'} alt='raccoon' src={Logo}></img>,
+        <h1>{this.modes[this.state.mode]}</h1>]}
         <header className="App-header">
           <p>{this.state.videoInfo?this.state.videoInfo.title:''}</p>
           <img alt='' src={this.state.videoInfo.thumbnail}></img>
@@ -199,7 +167,6 @@ export default class ComponentName extends Component {
         <NameSelect onChange={this.onChange} videoName={this.state.videoName}></NameSelect>
         <FormatSelect 
           onChange={this.onChangeType}
-          //onSubmit={(event,url)=>this.dlVideo(event,"http://localhost:5000/dl?videolink=https://www.youtube.com/watch?v=GSLPOmQV9_w"/* this.state.videoInfo.formats[this.state.typeSelect].url */)}
           onSubmit={this.getVideo}
           videoURL={this.state.videoURL}  
           typeSelect={this.state.typeSelect} 
