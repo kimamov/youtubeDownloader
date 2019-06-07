@@ -1,6 +1,6 @@
 import React from 'react'
 
-const About = ({mobileMode}) => {
+const About = () => {
   return (
     <div className={'aboutComp'}>
         <section className='quickInfo'>
