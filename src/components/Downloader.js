@@ -6,7 +6,7 @@ import NameSelect from './NameSelect.js'
 import DownloadList from './DownloadList'
 import BackButton from './BackButton.js'
 import FormatSelect from './FormatSelect.js'
-import Logo from './raccoon.svg';
+import Logo from './logo1.svg';
 const BASEURL='http://82.165.121.77:5000/'
 
 export default class ComponentName extends Component {
@@ -151,13 +151,13 @@ export default class ComponentName extends Component {
     return (
       <div className={'downloadContainer'}>
         <div id='dlComponent' className={this.state.videoInfo.length?"":"startScreenMobile"}>
-        {!this.state.videoInfo.length&&
+        {!this.state.videoInfo.length?
         [<img className={'logo'} alt='raccoon' src={Logo}></img>,
-        <h1>{this.modes[this.state.mode]}</h1>]}
+        <h1>{this.modes[this.state.mode]}</h1>]:
         <header className="App-header">
           <p>{this.state.videoInfo?this.state.videoInfo.title:''}</p>
           <img alt='' src={this.state.videoInfo.thumbnail}></img>
-        </header>
+        </header>}
         <Route exact path='/'
           render={()=>
             <SearchBar resetState={this.resetState} search={this.state.videoLink} onChange={this.onChange} getVideoInfo={this.getVideoInfo}/>

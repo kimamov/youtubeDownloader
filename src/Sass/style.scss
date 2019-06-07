@@ -23,6 +23,10 @@ $mainRoundness: 2rem;
     background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
+    h1{
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+    }
     main{
         margin: 0 auto;
         width: 100%;
@@ -124,15 +128,27 @@ $mainRoundness: 2rem;
       }
       #dlComponent{
         align-self: center;
-        padding: 2rem 1rem 2rem 1rem;
+        //padding: 2rem 1rem 2rem 1rem;
+        padding: 0 1rem;
         border-radius: 0;
         width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        /* grid-auto-rows: min-content; */
         background-color: transparent;
+        .App-header{
+          margin: 4rem 0 1rem 0;
+        }
+        .logo{
+          margin-top: 4rem;
+        }
         h1{
-          margin: 0;
+          margin: 1rem 0;
           padding: 0;
         }
         #videoSearchForm{
+          margin-top: 1rem;
           div{
               border: none;
               background-color: $transparant;
@@ -153,9 +169,7 @@ $mainRoundness: 2rem;
         
       }
       .startScreenMobile{
-        align-self: unset !important;
-        padding-top: 6rem !important;
-
+        display: block !important;
       }
       .radioButtons{
         font-size: 0.6rem !important;  
@@ -197,11 +211,12 @@ $mainRoundness: 2rem;
  
     .downloadListToggle{
       background-color: rgba(180,200,200,0.4) !important;
-      position: absolute;
+      /* position: absolute; */
       z-index: 2;
-      bottom: 2%;
-      left: 1%;
-      margin: 0 auto;
+      /* bottom: 2%;
+      left: 1%; */
+      align-self: end;
+      margin: 0 0 2rem 0 !important;
       i{
         font-size: 2.4rem;
       }
@@ -210,7 +225,7 @@ $mainRoundness: 2rem;
     .mobileAdvanced{
       position: relative;
       margin: 0;
-      transform: translateY(2.5rem)
+      /* transform: translateY(2.5rem) */
     }
 
     .mobileBack{
@@ -328,5 +343,8 @@ $mainRoundness: 2rem;
 
   .logo{
     margin: 0 auto;
-    width: 8rem;
+    //width: 8rem; raccoon icon
+    width: 12rem;
+    object-fit: cover;
+  
   }
