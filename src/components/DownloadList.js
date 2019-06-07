@@ -1,7 +1,6 @@
 import React from 'react'
 import BackButton from './BackButton.js'
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom'
 
 
 const DownloadList = ({history, videoName, videoSelect}) => {
@@ -11,7 +10,7 @@ const DownloadList = ({history, videoName, videoSelect}) => {
             <BackButton
             history={history} 
             cssStyle={'downloadListClose'}>
-            <i class="material-icons">
+            <i className="material-icons">
               close
             </i>
             </BackButton>
@@ -20,7 +19,7 @@ const DownloadList = ({history, videoName, videoSelect}) => {
         </div>
         <div className={'listContainer'}>
             {(typeof videoSelect.formats =="object")&&videoSelect.formats.map((item,index)=>
-            <div value={index}>
+            <div value={index} key={`dlist${index}`}>
                 <p>{'type: '+item.type}</p>
                 <p>{' quality: '+ item.quality+ ' '+(item.videoOnly?'only video':'')}</p>
                 <a href={item.url} Download={`${videoName}.mp4`}>VIDEO</a>

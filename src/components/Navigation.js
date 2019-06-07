@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Link, Route} from 'react-router-dom'
 import BackButton from './BackButton.js'
+import Logo from './logo1.svg';
 
 
 export default class componentName extends Component {
@@ -14,16 +15,9 @@ export default class componentName extends Component {
   render() {
     return (
       <div className='navComp'>
-      {/* <nav className={'topNav'}>
-        <ul className={'navList'}>
-            <Link className={'somePadding undecoratedLink'} to='/'>ME </Link>
-            <Link className={'somePadding undecoratedLink'} to='/'>GAMES</Link>
-            <Link className={'somePadding undecoratedLink'} to='/'>INFO</Link>
-        </ul>
-      </nav> */}
       <Link to={`/video/nav/${this.props.location.search}`}>
         <div className={`mobileNavToggle undecoratedLink`}>
-          <i class="material-icons">
+          <i className="material-icons">
             menu
           </i>
         </div>
@@ -32,7 +26,7 @@ export default class componentName extends Component {
         <BackButton
             history={history} 
             cssStyle={'mobileNavToggle spinLoad'}>
-            <i class="material-icons">
+            <i className="material-icons">
             close
             </i>
         </BackButton>

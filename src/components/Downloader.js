@@ -152,8 +152,8 @@ export default class ComponentName extends Component {
       <div className={'downloadContainer'}>
         <div id='dlComponent' className={this.state.videoInfo.length?"":"startScreenMobile"}>
         {!this.state.videoInfo.length?
-        [<img className={'logo'} alt='raccoon' src={Logo}></img>,
-        <h1>{this.modes[this.state.mode]}</h1>]:
+        [<img key='mainLogo' className={'logo'} alt='raccoon' src={Logo}></img>,
+        <h1 key='mainHeader'>{this.modes[this.state.mode]}</h1>]:
         <header className="App-header">
           <p>{this.state.videoInfo?this.state.videoInfo.title:''}</p>
           <img alt='' src={this.state.videoInfo.thumbnail}></img>
@@ -186,7 +186,7 @@ export default class ComponentName extends Component {
           <Route exact path='/video/downloadlist'  render={({history})=><BackButton 
             history={history} 
             cssStyle={'downloadListToggle mobileBack spinLoad centerAll'}>
-            <i class="material-icons">
+            <i className="material-icons">
               close
             </i>
           </BackButton>}

@@ -19,7 +19,7 @@ const FormatSelect = ({onSubmit,onChange,quickType,typeSelect,videoInfo,videoURL
             <div className='advancedTypeP'>ADVANCED FORMATS</div>
             <select name='typeSelect' onChange={onChange} value={typeSelect}>
                 {(typeof videoInfo.formats =="object")&&videoInfo.formats.map((item,index)=>
-                <option value={index}>{'type: '+item.type +' quality: '+ item.quality+ ' '+(item.videoOnly?'only video':'')}</option>
+                <option key={`do${index}`} value={index}>{'type: '+item.type +' quality: '+ item.quality+ ' '+(item.videoOnly?'only video':'')}</option>
                 )}
             </select>
         </div>

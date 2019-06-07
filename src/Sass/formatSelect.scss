@@ -35,6 +35,7 @@
     .advancedType{
       background-color: white;
       max-width: 24rem;
+      overflow: hidden;
       border-radius: $mainRoundness;
       margin: 1rem auto 1rem auto;
       display: flex;
