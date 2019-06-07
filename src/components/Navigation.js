@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {Link, Route} from 'react-router-dom'
 import BackButton from './BackButton.js'
-import Logo from './logo1.svg';
 
 
 export default class componentName extends Component {
