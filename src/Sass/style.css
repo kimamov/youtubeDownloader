@@ -305,6 +305,12 @@
   margin: 0.4rem !important;
 }
 
+.typeSelect .downloadAnchor {
+  display: block;
+  max-width: 12rem;
+  margin: 0 auto;
+}
+
 .App {
   text-align: center;
   background-image: -webkit-gradient(linear, left top, left bottom, from(lightblue), to(violet));

@@ -100,13 +100,11 @@ export default class ComponentName extends Component {
             dlSelected: true,
             quickType: '0',
             typeSelect: 0,
-            videoURL: `${BASEURL}dl?videolink=${this.state.videoLink}${res.data.title.replace(/[^\x00-\x7F]/g, "")}`
+            videoURL: `${BASEURL}dl?videolink=${this.state.videoLink}&name=${res.data.title.replace(/[^\x00-\x7F]/g, "")}`
           },()=>{
             this.props.history.push(`/video?video=${this.state.videoLink}`)
           })
-      }
-      
-      
+      } 
     }).catch(error=>{
       //console.log(error)
     })
@@ -177,10 +175,13 @@ export default class ComponentName extends Component {
         
         {this.state.dlSelected&&
         <Switch>
-          <Route exact path='/video/' render={()=><Link 
-            to={`/video/downloadlist${this.props.location.search}`}
-            className={'downloadListToggle undecoratedLink centerAll mobileAdvanced'}>
-            <p>ADVANCED</p>
+          <Route exact path='/video/' render={()=>
+            <Link 
+              to={`/video/downloadlist${this.props.location.search}`}
+              className={'downloadListToggle undecoratedLink centerAll mobileAdvanced'}>
+              <p>
+                ADVANCED
+              </p>
             </Link>}
           />
           <Route exact path='/video/downloadlist'  render={({history})=><BackButton 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 const FormatSelect = ({onSubmit,onChange,quickType,typeSelect,videoInfo,videoURL}) => {
-  console.log(typeSelect)
+  console.log(videoURL)
   return (
     <form onSubmit={onSubmit} className={'typeSelect slideInFromTop'}>
         <div>SELECT A FORMAT</div>
@@ -23,7 +23,7 @@ const FormatSelect = ({onSubmit,onChange,quickType,typeSelect,videoInfo,videoURL
                 )}
             </select>
         </div>
-        <a className={'undecoratedLink'} target='blank' href={videoURL} download>
+        <a className={'undecoratedLink downloadAnchor'} target='blank' href={videoURL} download>
           <div className={'roundedButton centerAll'} value='DOWNLOAD' type="submit">DOWNLOAD</div>
         </a>
     </form>
@@ -37,7 +37,7 @@ FormatSelect.propTypes = {
     PropTypes.number,
     PropTypes.string,
   ]),
-  videoInfo: PropTypes.array,
+  videoInfo: PropTypes.object,
   videoURL: PropTypes.string
 }
 
