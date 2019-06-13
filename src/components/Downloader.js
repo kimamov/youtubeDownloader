@@ -146,34 +146,47 @@ export default class ComponentName extends Component {
   })
   }
   render() {
+    if(!this.state.videoInfo || !this.state.videoInfo.length){
+      return (
+        <div className={'downloadContainer'}>
+          <div id='dlComponent' className={"startScreenMobile"}>
+          
+          <img key='mainLogo' className={'logo'} alt='raccoon' src={Logo}></img>
+          <h1 key='mainHeader'>{this.modes[this.state.mode]}</h1>
+          
+              <SearchBar resetState={this.resetState} search={this.state.videoLink} onChange={this.onChange} getVideoInfo={this.getVideoInfo}/>
+  
+          </div>
+             
+        </div>
+      )
+    }
+    
     return (
       <div className={'downloadContainer'}>
-        <div id='dlComponent' className={this.state.videoInfo.length?"":"startScreenMobile"}>
-        {!this.state.videoInfo.length?
-        [<img key='mainLogo' className={'logo'} alt='raccoon' src={Logo}></img>,
-        <h1 key='mainHeader'>{this.modes[this.state.mode]}</h1>]:
+        <div id='dlComponent'>
+        
         <header className="App-header">
           <p>{this.state.videoInfo?this.state.videoInfo.title:''}</p>
           <img alt='' src={this.state.videoInfo.thumbnail}></img>
-        </header>}
-        <Route exact path='/'
-          render={()=>
-            <SearchBar resetState={this.resetState} search={this.state.videoLink} onChange={this.onChange} getVideoInfo={this.getVideoInfo}/>
-          }
-        />
-        {this.state.dlSelected&&<div>
-        <NameSelect onChange={this.onChange} videoName={this.state.videoName}></NameSelect>
-        <FormatSelect 
-          onChange={this.onChangeType}
-          onSubmit={this.getVideo}
-          videoURL={this.state.videoURL}  
-          typeSelect={this.state.typeSelect} 
-          videoInfo={this.state.videoInfo}
-          quickType={this.state.quickType}>
-        </FormatSelect>
-        </div>}
+        </header>
+     
+        <div>
+          <NameSelect 
+            onChange={this.onChange} 
+            videoName={this.state.videoName}>
+          </NameSelect>
+          <FormatSelect 
+            onChange={this.onChangeType}
+            onSubmit={this.getVideo}
+            videoURL={this.state.videoURL}  
+            typeSelect={this.state.typeSelect} 
+            videoInfo={this.state.videoInfo}
+            quickType={this.state.quickType}>
+          </FormatSelect>
+        </div>
         
-        {this.state.dlSelected&&
+        
         <Switch>
           <Route exact path='/video/' render={()=>
             <Link 
@@ -193,11 +206,11 @@ export default class ComponentName extends Component {
           </BackButton>}
           />
           </Switch>
-        }
+        
         </div>
-        {this.state.dlSelected&&<Route exact path='/video/downloadlist' 
+        <Route exact path='/video/downloadlist' 
           render={({history})=><DownloadList history={history} videoName={this.state.videoName} videoSelect={this.state.videoInfo}/>} 
-        />}        
+        />       
       </div>
     )
   }

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 
 const FormatSelect = ({onSubmit,onChange,quickType,typeSelect,videoInfo,videoURL}) => {
-  console.log(videoURL)
   return (
     <form onSubmit={onSubmit} className={'typeSelect slideInFromTop'}>
         <div>SELECT A FORMAT</div>
