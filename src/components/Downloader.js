@@ -146,7 +146,8 @@ export default class ComponentName extends Component {
   })
   }
   render() {
-    if(!this.state.videoInfo || !this.state.videoInfo.length){
+    console.log(this.props.history)
+    if((!this.state.videoInfo || !this.state.videoInfo.length) || this.props.history.location.pathname==='/'){
       return (
         <div className={'downloadContainer'}>
           <div id='dlComponent' className={"startScreenMobile"}>
@@ -167,7 +168,7 @@ export default class ComponentName extends Component {
         <div id='dlComponent'>
         
         <header className="App-header">
-          <p>{this.state.videoInfo?this.state.videoInfo.title:''}</p>
+          <h1>{this.state.videoInfo?this.state.videoInfo.title:''}</h1>
           <img alt='' src={this.state.videoInfo.thumbnail}></img>
         </header>
      

@@ -307,7 +307,7 @@
 
 .typeSelect .downloadAnchor {
   display: block;
-  max-width: 12rem;
+  max-width: 13rem;
   margin: 0 auto;
 }
 
@@ -454,6 +454,9 @@
   }
   .App #dlComponent .App-header {
     margin: 4rem 0 1rem 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
   .App #dlComponent .logo {
     margin-top: 4rem;

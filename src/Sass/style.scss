@@ -134,6 +134,10 @@ $mainRoundness: 2rem;
         background-color: transparent;
         .App-header{
           margin: 4rem 0 1rem 0;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          
         }
         .logo{
           margin-top: 4rem;
