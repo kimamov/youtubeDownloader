@@ -27,11 +27,6 @@ class App extends Component {
       <div style={{height: window.innerHeight}} className={'App'}>
         <Route path='' component={Navigation}/>
           <main>
-            {/* <Switch>
-              <Route path='/video' component={Downloader}/>
-              <Route path='/' component={Downloader}/>
-              {<Route path='/about' component={MobileAbout}/>}
-            </Switch> */}
             <Route component={Downloader}/>
             <Route path='/about' component={MobileAbout}/>
             <About/>

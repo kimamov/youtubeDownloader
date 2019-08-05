@@ -91,23 +91,28 @@ export default class ComponentName extends Component {
     if(event){
       event.preventDefault()
     }
-    axios.get(`${BASEURL}simpleinfo?videolink=${this.state.videoLink}`).then(res=>{
-      //console.log(res)
-      if(res.data.formats){
-        this.setState(
-          {videoInfo: res.data,
-            videoName:res.data.title,
-            dlSelected: true,
-            quickType: '0',
-            typeSelect: 0,
-            videoURL: `${BASEURL}dl?videolink=${this.state.videoLink}&name=${res.data.title.replace(/[^\x00-\x7F]/g, "")}`
-          },()=>{
-            this.props.history.push(`/video?video=${this.state.videoLink}`)
-          })
-      } 
-    }).catch(error=>{
-      //console.log(error)
-    })
+    if(this.state.videoLink.length>1){
+      axios.get(`${BASEURL}simpleinfo?videolink=${this.state.videoLink}`).then(res=>{
+        //console.log(res)
+        if(res.data.formats){
+          console.log(res.data)
+          this.setState(
+            {videoInfo: res.data,
+              videoName:res.data.title,
+              dlSelected: true,
+              quickType: '0',
+              typeSelect: 0,
+              /* videoURL: `${BASEURL}dl?videolink=${this.state.videoLink}&name=${res.data.title.replace(/[^\x00-\x7F]/g, "")}` */
+            },()=>{
+              console.log(`/video?video=${this.state.videoLink}`)
+              this.props.history.push(`/video?video=${this.state.videoLink}`)
+            })
+        } 
+      }).catch(error=>{
+        //console.log(error)
+      })
+    }
+    
   }
 
   stateFromQuery=()=>{
@@ -146,7 +151,6 @@ export default class ComponentName extends Component {
   })
   }
   render() {
-    console.log(this.props.history)
     if((!this.state.videoInfo || !this.state.videoInfo.length) || this.props.history.location.pathname==='/'){
       return (
         <div className={'downloadContainer'}>
