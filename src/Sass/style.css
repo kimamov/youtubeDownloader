@@ -242,7 +242,7 @@
 .typeSelect {
   max-width: 40rem;
   width: 100%;
-  margin: 0 auto;
+  margin: 1rem auto;
 }
 
 .typeSelect div {
@@ -288,7 +288,7 @@
   max-width: 24rem;
   overflow: hidden;
   border-radius: 2rem;
-  margin: 1rem auto 1rem auto;
+  margin: 1.5rem auto 1rem auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -308,7 +308,7 @@
 .typeSelect .downloadAnchor {
   display: block;
   max-width: 13rem;
-  margin: 0 auto;
+  margin: 0.5rem auto 0 auto;
 }
 
 .App {
@@ -489,6 +489,7 @@
     display: block !important;
   }
   .App .radioButtons {
+    margin-top: 1rem;
     font-size: 0.6rem !important;
   }
   .topNav {

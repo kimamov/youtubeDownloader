@@ -102,7 +102,7 @@ export default class ComponentName extends Component {
               dlSelected: true,
               quickType: '0',
               typeSelect: 0,
-              /* videoURL: `${BASEURL}dl?videolink=${this.state.videoLink}&name=${res.data.title.replace(/[^\x00-\x7F]/g, "")}` */
+              videoURL: `${BASEURL}dl?videolink=${this.state.videoLink}`
             },()=>{
               console.log(`/video?video=${this.state.videoLink}`)
               this.props.history.push(`/video?video=${this.state.videoLink}`)
@@ -181,6 +181,7 @@ export default class ComponentName extends Component {
             onChange={this.onChange} 
             videoName={this.state.videoName}>
           </NameSelect>
+
           <FormatSelect 
             onChange={this.onChangeType}
             onSubmit={this.getVideo}

@@ -1,7 +1,7 @@
 .typeSelect{
     max-width: $inputWidth;
     width: $mobileSpacing;
-    margin: 0 auto;
+    margin: 1rem auto;
     div{
       margin: 0.4rem 0;
     }
@@ -37,7 +37,7 @@
       max-width: 24rem;
       overflow: hidden;
       border-radius: $mainRoundness;
-      margin: 1rem auto 1rem auto;
+      margin: 1.5rem auto 1rem auto;
       display: flex;
       justify-content: space-around;
       select{
@@ -51,6 +51,6 @@
     .downloadAnchor{
       display: block;
       max-width: 13rem;
-      margin: 0 auto;
+      margin: 1rem auto 0 auto;
     }
 }
